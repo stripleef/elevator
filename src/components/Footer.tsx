@@ -22,7 +22,7 @@ export default function Footer() {
           {/* Brand */}
           <div className={styles.brand}>
             <div className={styles.logoWrap}>
-              <img src="/logo.png" alt="Логотип ТИРМЭН" className={styles.logoImg} />
+              <img src="./logo.png" alt="Логотип ТИРМЭН" className={styles.logoImg} />
               <span className={styles.logoText}>ТИРМЭН</span>
             </div>
             <p className={styles.desc}>

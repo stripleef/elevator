@@ -70,7 +70,7 @@ export default function Header() {
         <div className={`container ${styles.inner}`}>
           {/* Logo */}
           <a href="#" className={styles.logo} id="logo-link">
-            <img src="/logo.png" alt="Логотип ТИРМЭН" className={styles.logoImg} />
+            <img src="./logo.png" alt="Логотип ТИРМЭН" className={styles.logoImg} />
             <span>ТИРМЭН</span>
           </a>
 
@@ -142,7 +142,7 @@ export default function Header() {
             >
               <div className={styles.mobileMenuHeader}>
                 <div className={styles.logo}>
-                  <img src="/logo.png" alt="Логотип ТИРМЭН" className={styles.logoImg} />
+                  <img src="./logo.png" alt="Логотип ТИРМЭН" className={styles.logoImg} />
                   <span>ТИРМЭН</span>
                 </div>
                 <button onClick={closeMobile} className={styles.burger} aria-label="Закрыть">

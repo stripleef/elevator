@@ -5,14 +5,14 @@ import { FadeIn, Stagger, fadeUpItem } from './AnimationUtils'
 import styles from './Services.module.css'
 
 const CANTEEN_IMAGES = [
-  '/stlovoaya10.jpg',
-  '/stolovaya11.jpg',
-  '/stolovaya121.jpg',
-  '/stolovaya13.jpg',
-  '/stolovay.webp',
-  '/stolovaya2.webp',
-  '/stolovaya3.webp',
-  '/stolovaya4.webp'
+  './stlovoaya10.jpg',
+  './stolovaya11.jpg',
+  './stolovaya121.jpg',
+  './stolovaya13.jpg',
+  './stolovay.webp',
+  './stolovaya2.webp',
+  './stolovaya3.webp',
+  './stolovaya4.webp'
 ]
 const IMG_LAUNDRY = 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80&w=800'
 

@@ -10,7 +10,7 @@ const STATS = [
   { value: '100%', label: 'свежее бельё' },
 ]
 
-const IMG = '/gosti.webp'
+const IMG = './gosti.webp'
 
 export default function About() {
   return (

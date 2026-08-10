@@ -33,7 +33,7 @@ export default function Hero() {
       <motion.div className={styles.videoWrapper} style={{ y: bgY }}>
         <video
           ref={videoRef}
-          src="/hero-video.mov"
+          src="./hero-video.mov"
           autoPlay
           muted
           playsInline
