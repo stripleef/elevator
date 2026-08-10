@@ -124,16 +124,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className={styles.scrollIndicator}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-      >
-        <span className={styles.scrollLine} />
-        <span className={styles.scrollText}>листать</span>
-      </motion.div>
     </section>
   )
 }
