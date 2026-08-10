@@ -10,7 +10,10 @@
 }
 .videoWrapper {
   position: absolute;
-  inset: -15%;
+  top: -15%;
+  bottom: -15%;
+  left: 0;
+  right: 0;
   will-change: transform;
   overflow: hidden;
   background: black;
