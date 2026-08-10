@@ -6,6 +6,7 @@ import styles from './Hero.module.css'
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRefMobileBg = useRef<HTMLVideoElement>(null)
   const [videoEnded, setVideoEnded] = useState(false)
   const { scrollY } = useScroll()
   const bgY = useTransform(scrollY, [0, 700], [0, 180])
@@ -14,6 +15,9 @@ export default function Hero() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.85 // slow down slightly
+    }
+    if (videoRefMobileBg.current) {
+      videoRefMobileBg.current.playbackRate = 0.85
     }
   }, [])
 
@@ -31,6 +35,15 @@ export default function Hero() {
     <section id="home" className={styles.hero} ref={containerRef} aria-label="Главный баннер">
       {/* Parallax background video */}
       <motion.div className={styles.videoWrapper} style={{ y: bgY }}>
+        <video
+          ref={videoRefMobileBg}
+          src="./hero-video.mov"
+          autoPlay
+          muted
+          playsInline
+          aria-hidden="true"
+          className={styles.videoBgBlur}
+        />
         <video
           ref={videoRef}
           src="./hero-video.mov"
