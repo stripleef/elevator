@@ -196,6 +196,14 @@
 }
 
 @media (max-width: 560px) {
+  .hero {
+    height: 80svh;
+    min-height: 560px;
+  }
+  .videoBg {
+    object-fit: contain;
+    background: black;
+  }
   .stats { gap: 24px; }
   .statValue { font-size: 26px; }
 }
