@@ -134,7 +134,7 @@ export default function Rooms() {
           </div>
 
           <Stagger className={styles.grid} staggerDelay={0.1}>
-            {ROOMS.map((room, i) => (
+            {ROOMS.map((room) => (
               <RoomCard key={room.id} room={room} onImgClick={setSelectedImg} />
             ))}
           </Stagger>
