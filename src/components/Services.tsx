@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Utensils, Car, WashingMachine, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Utensils, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { FadeIn, Stagger, fadeUpItem } from './AnimationUtils'
 import styles from './Services.module.css'
 
@@ -14,7 +14,6 @@ const CANTEEN_IMAGES = [
   './stolovaya3.webp',
   './stolovaya4.webp'
 ]
-const IMG_LAUNDRY = 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80&w=800'
 
 export default function Services() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
@@ -94,45 +93,7 @@ export default function Services() {
               </div>
             </motion.div>
 
-            {/* Parking & Laundry Split Row */}
-            <div className={styles.splitRow}>
-              
-              {/* Parking Block */}
-              <motion.div className={styles.serviceBlock} variants={fadeUpItem}>
-                <div className={styles.serviceImgPlaceholder}>P</div>
-                <div className={styles.serviceContent}>
-                  <div className={styles.serviceIcon}>
-                    <Car size={20} strokeWidth={2} />
-                  </div>
-                  <div className={styles.serviceText}>
-                    <h3>Охраняемая парковка</h3>
-                    <p>
-                      Надежная и просторная охраняемая парковка на территории гостиницы. Мы предлагаем места как для легковых 
-                      автомобилей, так и для большегрузного транспорта. Вы можете спокойно отдыхать, зная, что ваш автомобиль в безопасности.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
 
-              {/* Laundry Block */}
-              <motion.div className={styles.serviceBlock} variants={fadeUpItem}>
-                <img src={IMG_LAUNDRY} alt="Прачечная" className={styles.serviceImg} />
-                <div className={styles.serviceContent}>
-                  <div className={styles.serviceIcon}>
-                    <WashingMachine size={20} strokeWidth={2} />
-                  </div>
-                  <div className={styles.serviceText}>
-                    <h3>Прачечная</h3>
-                    <p>
-                      Мы позаботимся о чистоте ваших вещей. Воспользуйтесь услугами нашей прачечной для стирки, сушки и глажки 
-                      одежды. Быстрое и качественное обслуживание позволит вам всегда выглядеть безупречно во время поездки.
-                    </p>
-                    <a href="#" className={styles.serviceLink}>Прайс-лист</a>
-                  </div>
-                </div>
-              </motion.div>
-
-            </div>
           </Stagger>
         </div>
       </section>
