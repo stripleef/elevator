@@ -34,10 +34,11 @@
 .item:last-child { border-bottom: none; }
 .icon {
   width: 44px; height: 44px;
-  background: var(--primary-fixed);
+  background: #183a25;
+  border: 1px solid rgba(180, 205, 184, 0.25);
   border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  color: var(--primary-container);
+  color: #d0e9d4;
   flex-shrink: 0;
 }
 .itemLabel {
@@ -46,20 +47,20 @@
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--on-surface-variant);
+  color: #a3bfa7;
   margin-bottom: 4px;
 }
 .itemValue {
   font-size: 15px;
   font-weight: 500;
-  color: var(--on-background);
+  color: #ffffff;
   transition: color 0.2s;
 }
-.itemValue:hover { color: var(--surface-tint); }
+.itemValue:hover { color: #d0e9d4; }
 .itemValuePlain {
   font-size: 15px;
   font-weight: 500;
-  color: var(--on-background);
+  color: #ffffff;
   line-height: 1.5;
 }
 /* Map */

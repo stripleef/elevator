@@ -27,7 +27,7 @@
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--on-surface-variant);
+  color: #a3bfa7;
   margin-bottom: 8px;
 }
 .field input, .field select {
@@ -35,7 +35,7 @@
   font-family: 'Manrope', sans-serif;
   font-size: 15px;
   font-weight: 500;
-  color: var(--on-background);
+  color: #ffffff;
   background: none;
   border: none;
   outline: none;
@@ -44,31 +44,36 @@
   cursor: pointer;
 }
 .field input:focus, .field select:focus {
-  color: var(--primary-container);
+  color: #d0e9d4;
+}
+.field select option {
+  background: #0f2e1d;
+  color: #ffffff;
 }
 .divider {
   width: 1px;
   height: 44px;
-  background: var(--outline-variant);
+  background: rgba(180, 205, 184, 0.2);
   flex-shrink: 0;
 }
 .submit {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--primary-container);
-  color: white;
+  background: #d0e9d4;
+  color: #061b0e;
   padding: 14px 28px;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  margin-left: 16px;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   flex-shrink: 0;
-  transition: background 0.2s;
+  white-space: nowrap;
 }
-.submit:hover { background: var(--primary); }
+.submit:hover {
+  background: #ffffff;
+  color: #061b0e; }
 
 @media (max-width: 860px) {
   .card {

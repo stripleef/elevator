@@ -139,16 +139,16 @@
 }
 .bookBtnOutline {
   background: transparent;
-  color: var(--primary-container);
-  border: 1.5px solid var(--primary-container);
+  color: #d0e9d4;
+  border: 1.5px solid rgba(180, 205, 184, 0.4);
 }
-.bookBtnOutline:hover { background: var(--primary-container); color: white; }
+.bookBtnOutline:hover { background: #183a25; color: white; border-color: #d0e9d4; }
 .bookBtnFilled {
-  background: var(--primary-container);
-  color: white;
+  background: #d0e9d4;
+  color: #061b0e;
   border: 1.5px solid transparent;
 }
-.bookBtnFilled:hover { background: var(--primary); }
+.bookBtnFilled:hover { background: #ffffff; color: #061b0e; }
 
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) {
