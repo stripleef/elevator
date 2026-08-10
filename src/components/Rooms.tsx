@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Wifi, Tv, Wind, ShowerHead, Users, CheckCircle2, X } from 'lucide-react'
+import { Wifi, Tv, Wind, ShowerHead, Users, X } from 'lucide-react'
 import { FadeIn, Stagger, fadeUpItem } from './AnimationUtils'
 import styles from './Rooms.module.css'
 
@@ -11,7 +11,7 @@ interface Room {
   badge?: string
   img: string
   desc: string
-  amenities: { icon: React.FC<{ size: number; strokeWidth: number }>; label: string }[]
+  amenities: { icon: React.FC<{ size: number; strokeWidth: number; className?: string }>; label: string }[]
   featured?: boolean
 }
 
@@ -55,7 +55,7 @@ const ROOMS: Room[] = [
   },
 ]
 
-function RoomCard({ room, index, onImgClick }: { room: Room; index: number; onImgClick: (img: string) => void }) {
+function RoomCard({ room, onImgClick }: { room: Room; onImgClick: (img: string) => void }) {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -65,7 +65,7 @@ function RoomCard({ room, index, onImgClick }: { room: Room; index: number; onIm
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       whileHover={{ y: -8 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
     >
       <div 
         className={styles.imgWrap} 
@@ -79,7 +79,7 @@ function RoomCard({ room, index, onImgClick }: { room: Room; index: number; onIm
           className={styles.img}
           referrerPolicy="no-referrer"
           animate={{ scale: hovered ? 1.06 : 1 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
         />
         <div className={styles.priceBadge}>{room.price}<span>/сут.</span></div>
         {room.badge && <div className={styles.featuredBadge}>{room.badge}</div>}
@@ -97,7 +97,7 @@ function RoomCard({ room, index, onImgClick }: { room: Room; index: number; onIm
         <ul className={styles.amenities}>
           {room.amenities.map(({ icon: Icon, label }) => (
             <li key={label} className={styles.amenity}>
-              <CheckCircle2 size={14} strokeWidth={2} className={styles.amenityIcon} />
+              <Icon size={14} strokeWidth={2} className={styles.amenityIcon} />
               {label}
             </li>
           ))}
@@ -135,7 +135,7 @@ export default function Rooms() {
 
           <Stagger className={styles.grid} staggerDelay={0.1}>
             {ROOMS.map((room, i) => (
-              <RoomCard key={room.id} room={room} index={i} onImgClick={setSelectedImg} />
+              <RoomCard key={room.id} room={room} onImgClick={setSelectedImg} />
             ))}
           </Stagger>
         </div>

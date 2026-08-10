@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 interface FadeInProps {
@@ -65,7 +65,7 @@ export function Stagger({ children, className = '', staggerDelay = 0.1 }: Stagge
   )
 }
 
-export const fadeUpItem = {
+export const fadeUpItem: import('framer-motion').Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 }
