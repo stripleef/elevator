@@ -4,29 +4,29 @@
 ================================================================ */
 
 :root {
-  /* Colors */
-  --surface:                  #fbf9f7;
-  --surface-dim:              #dbdad8;
-  --surface-container-low:    #f5f3f1;
-  --surface-container:        #efedec;
-  --surface-container-high:   #eae8e6;
-  --surface-container-highest:#e4e2e0;
-  --surface-container-lowest: #ffffff;
-  --on-surface:               #1b1c1b;
-  --on-surface-variant:       #434843;
-  --outline:                  #737973;
-  --outline-variant:          #c3c8c1;
-  --primary:                  #061b0e;
-  --primary-container:        #1b3022;
-  --on-primary:               #ffffff;
-  --on-primary-container:     #819986;
+  /* Colors - Dark Forest Green Theme */
+  --surface:                  #061b0e;
+  --surface-dim:              #04130a;
+  --surface-container-low:    #0b2416;
+  --surface-container:        #0f2e1d;
+  --surface-container-high:   #153824;
+  --surface-container-highest:#1c422c;
+  --surface-container-lowest: #061b0e;
+  --on-surface:               #f0f5f1;
+  --on-surface-variant:       #a3bfa7;
+  --outline:                  #3e5c45;
+  --outline-variant:          rgba(180, 205, 184, 0.15);
+  --primary:                  #d0e9d4;
+  --primary-container:        #183a25;
+  --on-primary:               #061b0e;
+  --on-primary-container:     #d0e9d4;
   --primary-fixed:            #d0e9d4;
   --primary-fixed-dim:        #b4cdb8;
-  --secondary:                #6b5c4c;
-  --secondary-container:      #f4dfcb;
-  --surface-tint:             #4d6453;
-  --background:               #fbf9f7;
-  --on-background:            #1b1c1b;
+  --secondary:                #f1e5d1;
+  --secondary-container:      #2b2216;
+  --surface-tint:             #b4cdb8;
+  --background:               #061b0e;
+  --on-background:            #f0f5f1;
 
   /* Spacing */
   --container-max:  1280px;

@@ -1,6 +1,6 @@
 .section {
   padding-block: clamp(80px, 10vw, 120px);
-  background: white;
+  background: var(--surface);
 }
 .header {
   margin-bottom: 64px;

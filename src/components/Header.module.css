@@ -3,14 +3,16 @@
   top: 0; left: 0; right: 0;
   z-index: 100;
   height: 76px;
-  background: rgba(251, 249, 247, 0.98);
-  border-bottom: 1px solid rgba(195, 200, 193, 0);
+  background: rgba(6, 27, 14, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .header.scrolled {
-  background: #FBF9F7;
-  border-color: rgba(195, 200, 193, 0.35);
-  box-shadow: 0 2px 24px rgba(27, 48, 34, 0.07);
+  background: rgba(6, 27, 14, 0.96);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 .inner {
   display: flex;
@@ -26,7 +28,7 @@
   font-family: 'EB Garamond', serif;
   font-size: 26px;
   font-weight: 600;
-  color: var(--primary-container);
+  color: #ffffff;
   letter-spacing: -0.01em;
   flex-shrink: 0;
 }
@@ -88,33 +90,34 @@
   align-items: center;
   justify-content: center;
   width: 36px; height: 36px;
-  color: var(--primary-container);
+  color: #ffffff;
   border-radius: 8px;
   transition: background 0.2s;
   flex-shrink: 0;
 }
-.burger:hover { background: var(--surface-container); }
+.burger:hover { background: rgba(255,255,255,0.1); }
 
 /* Mobile overlay */
 .mobileOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(6, 27, 14, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 150;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
 }
 .mobileMenu {
   position: fixed;
   top: 0; right: 0;
   width: min(340px, 90vw);
   height: 100svh;
-  background: var(--surface-container-lowest);
+  background: #092013;
+  color: #ffffff;
   z-index: 200;
   padding: 20px 24px 32px;
   display: flex;
   flex-direction: column;
   gap: 0;
-  box-shadow: -8px 0 48px rgba(6, 27, 14, 0.18);
+  box-shadow: -8px 0 48px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
 }
 .mobileMenuHeader {
@@ -123,18 +126,18 @@
   justify-content: space-between;
   margin-bottom: 40px;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--outline-variant);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .mobileNavLink {
   display: block;
   padding: 16px 0;
   font-size: 18px;
   font-weight: 600;
-  color: var(--on-surface-variant);
-  border-bottom: 1px solid var(--surface-container-high);
+  color: rgba(240, 245, 241, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: color 0.15s;
 }
-.mobileNavLink:hover { color: var(--primary-container); }
+.mobileNavLink:hover { color: var(--primary-fixed); }
 .mobileCallBtn {
   margin-top: auto;
   display: flex;
