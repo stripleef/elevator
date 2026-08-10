@@ -1,0 +1,72 @@
+.footer {
+  background: var(--primary-container);
+  padding-block: 64px 48px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--gutter);
+}
+.brand {}
+.logoWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.logoImg {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: rgba(255,255,255,0.12);
+  flex-shrink: 0;
+}
+.logoText {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary-fixed);
+}
+.desc {
+  font-size: 14px;
+  color: var(--on-primary-container);
+  line-height: 1.7;
+  max-width: 280px;
+  margin-bottom: 28px;
+}
+.copyright {
+  font-size: 12px;
+  color: rgba(129, 153, 134, 0.65);
+  line-height: 1.6;
+}
+.col {}
+.colTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-fixed-dim);
+  margin-bottom: 20px;
+}
+.col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.link {
+  font-size: 14px;
+  color: var(--on-primary-container);
+  opacity: 0.7;
+  transition: opacity 0.2s, color 0.2s;
+}
+.link:hover { opacity: 1; color: var(--primary-fixed); }
+.divider {
+  border: none;
+  border-top: 1px solid rgba(180, 205, 184, 0.1);
+  margin-top: 48px;
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .brand { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+}

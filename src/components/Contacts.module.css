@@ -1,0 +1,106 @@
+.section {
+  padding-block: clamp(80px, 10vw, 120px);
+  background: var(--surface);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 8vw, 96px);
+  align-items: start;
+}
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--surface-tint);
+  margin-bottom: 14px;
+}
+.title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 500;
+  color: var(--on-background);
+  margin-bottom: 40px;
+}
+.list { display: flex; flex-direction: column; gap: 0; }
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--outline-variant);
+}
+.item:last-child { border-bottom: none; }
+.icon {
+  width: 44px; height: 44px;
+  background: var(--primary-fixed);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--primary-container);
+  flex-shrink: 0;
+}
+.itemLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  margin-bottom: 4px;
+}
+.itemValue {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--on-background);
+  transition: color 0.2s;
+}
+.itemValue:hover { color: var(--surface-tint); }
+.itemValuePlain {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--on-background);
+  line-height: 1.5;
+}
+/* Map */
+.mapCard {
+  border-radius: 20px;
+  border: 1px solid var(--outline-variant);
+  height: 100%;
+  min-height: 420px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.mapIframe {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  border: none;
+  display: block;
+  flex: 1;
+}
+.mapOpenBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--surface-tint);
+  border-top: 1px solid var(--outline-variant);
+  background: white;
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+.mapOpenBtn:hover {
+  color: var(--primary-container);
+  background: var(--surface-container-low);
+}
+
+@media (max-width: 860px) {
+  .grid { grid-template-columns: 1fr; }
+  .mapCard { min-height: 260px; }
+}

@@ -1,0 +1,82 @@
+.section {
+  padding-block: clamp(48px, 6vw, 80px);
+  background: var(--surface-container-highest);
+}
+.card {
+  background: var(--primary-container);
+  border-radius: 20px;
+  padding: clamp(40px, 5vw, 64px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  overflow: hidden;
+  position: relative;
+}
+.circle1 {
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(180, 205, 184, 0.07);
+  pointer-events: none;
+}
+.circle2 {
+  position: absolute;
+  bottom: -60px; left: 30%;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(180, 205, 184, 0.05);
+  pointer-events: none;
+}
+.text { position: relative; z-index: 1; max-width: 480px; }
+.title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 500;
+  color: white;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.subtitle {
+  font-size: 16px;
+  color: var(--primary-fixed-dim);
+  line-height: 1.6;
+}
+.actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btnPrimary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: var(--primary-container);
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.btnPrimary:hover { background: var(--primary-fixed); }
+.btnSecondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  padding: 13px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  transition: background 0.2s;
+  white-space: nowrap;
+}
