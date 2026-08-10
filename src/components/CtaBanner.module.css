@@ -1,6 +1,6 @@
 .section {
   padding-block: clamp(48px, 6vw, 80px);
-  background: var(--surface-container-highest);
+  background: var(--background);
 }
 .card {
   background: var(--primary-container);

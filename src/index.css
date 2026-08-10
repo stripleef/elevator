@@ -4,28 +4,28 @@
 ================================================================ */
 
 :root {
-  /* Colors - Dark Forest Green Theme (High Contrast) */
-  --surface:                  #061b0e;
-  --surface-dim:              #04130a;
-  --surface-container-low:    #0b2416;
-  --surface-container:        #0f2e1d;
-  --surface-container-high:   #153824;
-  --surface-container-highest:#1c422c;
-  --surface-container-lowest: #061b0e;
+  /* Colors - Unified Medium Forest Green Theme */
+  --surface:                  #143321;
+  --surface-dim:              #102b1b;
+  --surface-container-low:    #143321;
+  --surface-container:        #0d2618;
+  --surface-container-high:   #193c27;
+  --surface-container-highest:#1e462d;
+  --surface-container-lowest: #143321;
   --on-surface:               #ffffff;
   --on-surface-variant:       #e2efe4;
   --outline:                  #4a6851;
-  --outline-variant:          rgba(226, 239, 228, 0.2);
+  --outline-variant:          rgba(255, 255, 255, 0.15);
   --primary:                  #ffffff;
-  --primary-container:        #183a25;
-  --on-primary:               #061b0e;
+  --primary-container:        #143321;
+  --on-primary:               #ffffff;
   --on-primary-container:     #ffffff;
   --primary-fixed:            #f1e5d1;
   --primary-fixed-dim:        #e2efe4;
   --secondary:                #f1e5d1;
   --secondary-container:      #2b2216;
   --surface-tint:             #f1e5d1;
-  --background:               #061b0e;
+  --background:               #143321;
   --on-background:            #ffffff;
 
   /* Spacing */

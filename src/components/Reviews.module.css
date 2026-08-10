@@ -1,6 +1,6 @@
 .section {
   padding-block: clamp(80px, 10vw, 120px);
-  background: var(--surface-container-low);
+  background: var(--background);
 }
 .header {
   display: flex;
