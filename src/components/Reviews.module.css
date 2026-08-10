@@ -68,7 +68,7 @@
 .starEmpty { color: rgba(255, 255, 255, 0.15); }
 .text {
   font-size: 15px;
-  color: #b4cdb8;
+  color: #e2efe4;
   line-height: 1.7;
   font-style: italic;
   flex: 1;
@@ -87,7 +87,7 @@
   flex-shrink: 0;
 }
 .name { font-size: 14px; font-weight: 700; color: #ffffff; }
-.meta { font-size: 12px; color: #a3bfa7; margin-top: 2px; }
+.meta { font-size: 12px; color: #e2efe4; margin-top: 2px; }
 /* Dots */
 .dots {
   display: flex;

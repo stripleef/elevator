@@ -4,7 +4,7 @@
 ================================================================ */
 
 :root {
-  /* Colors - Dark Forest Green Theme */
+  /* Colors - Dark Forest Green Theme (High Contrast) */
   --surface:                  #061b0e;
   --surface-dim:              #04130a;
   --surface-container-low:    #0b2416;
@@ -12,21 +12,21 @@
   --surface-container-high:   #153824;
   --surface-container-highest:#1c422c;
   --surface-container-lowest: #061b0e;
-  --on-surface:               #f0f5f1;
-  --on-surface-variant:       #a3bfa7;
-  --outline:                  #3e5c45;
-  --outline-variant:          rgba(180, 205, 184, 0.15);
-  --primary:                  #d0e9d4;
+  --on-surface:               #ffffff;
+  --on-surface-variant:       #e2efe4;
+  --outline:                  #4a6851;
+  --outline-variant:          rgba(226, 239, 228, 0.2);
+  --primary:                  #ffffff;
   --primary-container:        #183a25;
   --on-primary:               #061b0e;
-  --on-primary-container:     #d0e9d4;
-  --primary-fixed:            #d0e9d4;
-  --primary-fixed-dim:        #b4cdb8;
+  --on-primary-container:     #ffffff;
+  --primary-fixed:            #f1e5d1;
+  --primary-fixed-dim:        #e2efe4;
   --secondary:                #f1e5d1;
   --secondary-container:      #2b2216;
-  --surface-tint:             #b4cdb8;
+  --surface-tint:             #f1e5d1;
   --background:               #061b0e;
-  --on-background:            #f0f5f1;
+  --on-background:            #ffffff;
 
   /* Spacing */
   --container-max:  1280px;

@@ -14,21 +14,21 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--primary-fixed-dim);
+  color: #f1e5d1;
   margin-bottom: 16px;
 }
 .title {
   font-family: 'EB Garamond', serif;
   font-size: clamp(28px, 3.5vw, 40px);
   font-weight: 500;
-  color: white;
+  color: #ffffff;
   margin-bottom: 24px;
   line-height: 1.2;
 }
 .body {
   font-size: 15px;
-  line-height: 1.7;
-  color: var(--on-primary-container);
+  line-height: 1.75;
+  color: #e2efe4;
 }
 /* Timeline */
 .timeline {
@@ -43,7 +43,7 @@
   bottom: 20px;
   left: 6.25px; /* Centers the 1.5px line under 14px dot */
   width: 1.5px;
-  background: rgba(180, 205, 184, 0.15);
+  background: rgba(226, 239, 228, 0.25);
   z-index: 0;
 }
 .timelineFill {
@@ -52,7 +52,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--primary-fixed-dim);
+  background: #f1e5d1;
   transform-origin: top;
 }
 .timelineItem {
@@ -70,9 +70,9 @@
 .dot {
   width: 14px; height: 14px;
   border-radius: 50%;
-  background: var(--primary-fixed-dim);
-  border: 3px solid rgba(180, 205, 184, 0.3);
-  box-shadow: 0 0 0 4px rgba(180, 205, 184, 0.15);
+  background: #f1e5d1;
+  border: 3px solid rgba(241, 229, 209, 0.4);
+  box-shadow: 0 0 12px rgba(241, 229, 209, 0.3);
   flex-shrink: 0;
   margin-top: 5px;
 }
@@ -86,13 +86,13 @@
   font-family: 'EB Garamond', serif;
   font-size: 30px;
   font-weight: 500;
-  color: var(--primary-fixed-dim);
+  color: #ffffff;
   line-height: 1;
   margin-bottom: 8px;
 }
 .timelineDesc {
-  font-size: 14px;
-  color: var(--on-primary-container);
+  font-size: 14.5px;
+  color: #e2efe4;
   line-height: 1.65;
 }
 

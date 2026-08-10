@@ -51,13 +51,13 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--on-surface-variant);
+  color: #ffffff;
   padding-bottom: 4px;
   transition: color 0.2s;
   white-space: nowrap;
 }
-.navLink:hover { color: var(--primary-container); }
-.navLinkActive { color: var(--primary-container); }
+.navLink:hover { color: #f1e5d1; }
+.navLinkActive { color: #f1e5d1; }
 .navUnderline {
   position: absolute;
   bottom: 0; left: 0; right: 0;

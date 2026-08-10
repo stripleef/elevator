@@ -75,7 +75,7 @@
   color: #d0e9d4;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.priceBadge span { font-weight: 400; color: #a3bfa7; margin-left: 2px; }
+.priceBadge span { font-weight: 400; color: #e2efe4; margin-left: 2px; }
 .featuredBadge {
   position: absolute;
   top: 16px; left: 16px;
