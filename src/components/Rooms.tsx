@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Wifi, Tv, Wind, ShowerHead, Users, X, Phone } from 'lucide-react'
+import { Wifi, Tv, Wind, ShowerHead, Users, X, Phone, Images, ChevronLeft, ChevronRight, HelpCircle } from 'lucide-react'
 import { FadeIn, Stagger, fadeUpItem } from './AnimationUtils'
 import styles from './Rooms.module.css'
 
-const PHONE_NUMBER = '+7 (987) 603-79-43'
-const PHONE_HREF = 'tel:+79876037943'
+const PHONE_NUMBER = '+7 (917) 447-55-41'
+const PHONE_HREF = 'tel:+79174475541'
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false)
@@ -21,9 +21,9 @@ function useIsMobile() {
 interface Room {
   id: string
   name: string
-  price: string
+  roomNumbers: string
   badge?: string
-  img: string
+  images: string[]
   desc: string
   amenities: { icon: React.FC<{ size: number; strokeWidth: number; className?: string }>; label: string }[]
   featured?: boolean
@@ -31,45 +31,116 @@ interface Room {
 
 const ROOMS: Room[] = [
   {
-    id: 'economy',
-    name: 'Эконом',
-    price: 'от 1 500 ₽',
-    img: 'https://lh3.googleusercontent.com/aida/AP1WRLtiz6YHFt5cDKr6ySVZxXUGe-u5jRWAun6o3A9In3Ithj5KN_uj6au0muSor8aiwfsMgtN3gVwr-Q5XrJKKf-KGDVqsCVS6OEWStqeYGDAT-l3UJmNa8ssEMW6n5H7uxjNFMdWd6DnicsrNF_dmZ5oIm9TNWH6BdJgJQHeH_OOuybIGtluHo_DsOi8NXT0c_xZjgnpzX5adluEKobYY-Gue1PhgMoLtQcOVokpghbUfJMx01MTTBqEpdNk',
-    desc: 'Чистый и уютный номер для спокойного сна. Удобства расположены на этаже. Гарантируем тишину и свежее бельё.',
+    id: 'ekonom',
+    name: 'ЭКОНОМ',
+    roomNumbers: 'Номера: 1, 2, 3, 4, 6, 14, 15, 16, 18, 19',
+    images: [
+      './rooms/ekonom/stand.jpg',
+      './rooms/ekonom/stand2.jpg',
+    ],
+    desc: 'Уютный и чистый номер с тремя односпальными кроватями. Удобства (душ и санузел) расположены на этаже. Гарантируем идеальную чистоту и свежее бельё.',
     amenities: [
-      { icon: Users, label: '2 кровати' },
+      { icon: Users, label: '3 односпальные кровати' },
+      { icon: ShowerHead, label: 'Душ и туалет на этаже' },
+      { icon: Wind, label: 'Кондиционер' },
       { icon: Wifi, label: 'Wi-Fi' },
     ],
   },
   {
-    id: 'standard',
-    name: 'Стандарт',
-    price: 'от 2 500 ₽',
+    id: 'standart-1',
+    name: 'СТАНДАРТ',
+    roomNumbers: 'Номер: 5',
     badge: 'Популярный',
     featured: true,
-    img: 'https://lh3.googleusercontent.com/aida/AP1WRLsYoNy8cOWIBXUmAiO79miKx638LsmkimcC6Zjq5VjA-03M3jQIxb8AkFHbRCL7QSo_Xwq5IDS65wzv7rd47IlJZDaiJAMAo9lqW74fQl_hQOseN9791-gRyMGrcK7tI_Sz-1bKiNh46sBzrcoIJTyG9y76ulQljgQ1-Lflne0uhu35Ob4owWAugnH2ao6D3zxyLyog_VVpl7cDaPSPBk8r8zfSgbVUqnhTpw4c86wAfbZKAFafBQH1ZQo',
-    desc: 'Комфортный номер с собственным душем и санузлом. Безупречная чистота и тишина — всё необходимое для отдыха.',
+    images: [
+      './rooms/standart1/standart1.jpg',
+      './rooms/standart1/standart2.jpg',
+    ],
+    desc: 'Комфортный номер с одной двухспальной и одной 1,5-спальной кроватью. Общий душ и туалет расположены на этаже.',
     amenities: [
-      { icon: ShowerHead, label: 'Свой санузел' },
+      { icon: Users, label: '1 двуспальная + 1.5-спальная кровать' },
+      { icon: ShowerHead, label: 'Душ и туалет на этаже' },
       { icon: Tv, label: 'ТВ' },
+      { icon: Wind, label: 'Кондиционер' },
       { icon: Wifi, label: 'Wi-Fi' },
     ],
   },
   {
-    id: 'family',
-    name: 'Семейный',
-    price: 'от 4 000 ₽',
-    img: 'https://lh3.googleusercontent.com/aida/AP1WRLtBAE3lCFYdsyewTRVeML9N4Q2gk2-AnF9nsMK7CdGzmzKMvW_tnBBE6nL_gq3YEUDq3eK_PA70kqiPB0oBh2GxQra-L_BDPQGQeWPJjoIFFduDQxa0meq3WViHx1cU6PpqL4hoV5Yfbc6f3WO3RF6DAT4NhrkPQPM8SSUn_dBqyatY_0UWEL9Pu4P0Intp2MnOPkl-0kaCeBWe5f2E9rO0Iq-JQ29f8S2QHQ-7U1xaoVmd0ALShFrKrmI',
-    desc: 'Просторный номер для всей семьи. Две комнаты, свой санузел и уютная атмосфера для полноценного отдыха.',
+    id: 'standart-2',
+    name: 'СТАНДАРТ',
+    roomNumbers: 'Номера: 7, 20',
+    images: [
+      './rooms/standart2/stan.jpg',
+      './rooms/standart2/stan2.jpg',
+    ],
+    desc: 'Уютный двухместный номер с двухспальной кроватью. Удобства (душ и туалет) расположены на этаже.',
     amenities: [
-      { icon: ShowerHead, label: 'Свой санузел' },
+      { icon: Users, label: '1 двуспальная кровать' },
+      { icon: ShowerHead, label: 'Душ и туалет на этаже' },
+      { icon: Tv, label: 'ТВ' },
+      { icon: Wind, label: 'Кондиционер' },
+      { icon: Wifi, label: 'Wi-Fi' },
+    ],
+  },
+  {
+    id: 'komfort-1',
+    name: 'КОМФОРТ',
+    roomNumbers: 'Номера: 10, 12',
+    images: [
+      './rooms/komfort1/komfort1.jpg',
+      './rooms/komfort1/komfort2.jpg',
+      './rooms/komfort1/komfort3.jpg',
+      './rooms/komfort1/komfort4.jpg',
+      './rooms/komfort1/komfort5.jpg',
+    ],
+    desc: 'Комфортабельный номер с двухспальной кроватью и собственным санузлом (душ и туалет) прямо в номере.',
+    amenities: [
+      { icon: Users, label: '1 двуспальная кровать' },
+      { icon: ShowerHead, label: 'Свой душ и санузел' },
+      { icon: Tv, label: 'ТВ' },
+      { icon: Wind, label: 'Кондиционер' },
+      { icon: Wifi, label: 'Wi-Fi' },
+    ],
+  },
+  {
+    id: 'komfort-2',
+    name: 'КОМФОРТ',
+    roomNumbers: 'Номера: 8, 9',
+    images: [
+      './rooms/komfort2/komf.jpg',
+      './rooms/komfort2/komf2.jpg',
+      './rooms/komfort2/komf3.jpg',
+      './rooms/komfort2/komf4.jpg',
+      './rooms/komfort2/komf5.jpg',
+    ],
+    desc: 'Номер «Комфорт» с двумя отдельными односпальными кроватями, собственным душем, туалетом и холодильником.',
+    amenities: [
+      { icon: Users, label: '2 односпальные кровати' },
+      { icon: ShowerHead, label: 'Свой душ и санузел' },
+      { icon: Tv, label: 'ТВ' },
+      { icon: Wind, label: 'Холодильник' },
+      { icon: Wind, label: 'Кондиционер' },
+      { icon: Wifi, label: 'Wi-Fi' },
+    ],
+  },
+  {
+    id: 'komfort-3',
+    name: 'КОМФОРТ (Семейный)',
+    roomNumbers: 'Номер: 11',
+    images: [],
+    desc: 'Большой многоместный номер «Комфорт» с одной двухспальной и тремя односпальными кроватями, душем, туалетом и холодильником.',
+    amenities: [
+      { icon: Users, label: '1 двуспальная + 3 односпальные' },
+      { icon: ShowerHead, label: 'Свой душ и санузел' },
+      { icon: Tv, label: 'ТВ' },
+      { icon: Wind, label: 'Холодильник' },
       { icon: Wind, label: 'Кондиционер' },
       { icon: Wifi, label: 'Wi-Fi' },
     ],
   },
 ]
 
-function CallDropdown({ onClose }: { onClose: () => void }) {
+function PriceDropdown({ onClose }: { onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -92,27 +163,39 @@ function CallDropdown({ onClose }: { onClose: () => void }) {
       transition={{ duration: 0.2 }}
     >
       <p className={styles.callDropdownText}>
-        Позвоните по этому номеру для бронирования и уточнения всех деталей:
+        Для уточнения всех цен звоните по номеру:
       </p>
       <a href={PHONE_HREF} className={styles.callDropdownPhone}>
         <Phone size={16} strokeWidth={2} />
         {PHONE_NUMBER}
       </a>
+      <p className={styles.priceNote}>
+        Стоимость зависит от количества человек и дней проживания, но она вас приятно удивят!
+      </p>
     </motion.div>
   )
 }
 
-function RoomCard({ room, onImgClick }: { room: Room; onImgClick: (img: string) => void }) {
+function RoomCard({ 
+  room, 
+  onOpenGallery 
+}: { 
+  room: Room
+  onOpenGallery: (images: string[], startIndex: number) => void 
+}) {
   const [hovered, setHovered] = useState(false)
-  const [showCall, setShowCall] = useState(false)
+  const [showPricePopup, setShowPricePopup] = useState(false)
   const isMobile = useIsMobile()
 
-  const handleBookClick = (e: React.MouseEvent) => {
+  const handlePriceClick = (e: React.MouseEvent) => {
     if (!isMobile) {
       e.preventDefault()
-      setShowCall(prev => !prev)
+      setShowPricePopup(prev => !prev)
     }
   }
+
+  const hasImages = room.images.length > 0
+  const mainImage = hasImages ? room.images[0] : null
 
   return (
     <motion.article
@@ -120,39 +203,74 @@ function RoomCard({ room, onImgClick }: { room: Room; onImgClick: (img: string) 
       variants={fadeUpItem}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      whileHover={{ y: -8 }}
+      whileHover={{ y: -6 }}
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
     >
       <div 
         className={styles.imgWrap} 
-        onClick={() => onImgClick(room.img)}
-        style={{ cursor: 'pointer' }}
-        title="Увеличить фото"
+        onClick={() => hasImages && onOpenGallery(room.images, 0)}
+        style={{ cursor: hasImages ? 'pointer' : 'default' }}
+        title={hasImages ? 'Нажмите, чтобы посмотреть все фото' : 'Фотографий пока нет'}
       >
-        <motion.img
-          src={room.img}
-          alt={`Номер ${room.name}`}
-          className={styles.img}
-          referrerPolicy="no-referrer"
-          animate={{ scale: hovered ? 1.06 : 1 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-        />
-        <div className={styles.priceBadge}>{room.price}<span>/сут.</span></div>
+        {mainImage ? (
+          <motion.img
+            src={mainImage}
+            alt={`Номер ${room.name}`}
+            className={styles.img}
+            referrerPolicy="no-referrer"
+            animate={{ scale: hovered ? 1.06 : 1 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+          />
+        ) : (
+          <div className={styles.noImgPlaceholder}>
+            <Images size={40} strokeWidth={1.5} />
+            <span>Скоро добавим фото</span>
+          </div>
+        )}
+
+        {/* Price Tag Button on top of Card Image */}
+        <button
+          type="button"
+          className={styles.priceBadgeBtn}
+          onClick={(e) => {
+            e.stopPropagation()
+            handlePriceClick(e)
+          }}
+        >
+          <HelpCircle size={14} strokeWidth={2.5} />
+          Узнать цену
+        </button>
+
+        {/* Photos indicator badge */}
+        {hasImages && (
+          <div className={styles.photosBadge}>
+            <Images size={13} strokeWidth={2} />
+            <span>{room.images.length} фото</span>
+          </div>
+        )}
+
         {room.badge && <div className={styles.featuredBadge}>{room.badge}</div>}
-        <motion.div
-          className={styles.imgOverlay}
-          animate={{ opacity: hovered ? 0.15 : 0 }}
-          transition={{ duration: 0.3 }}
-        />
+
+        {hasImages && (
+          <motion.div
+            className={styles.imgOverlay}
+            animate={{ opacity: hovered ? 0.15 : 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        )}
       </div>
 
       <div className={styles.body}>
-        <h3 className={styles.name}>{room.name}</h3>
+        <div className={styles.cardHeaderInfo}>
+          <h3 className={styles.name}>{room.name}</h3>
+          <span className={styles.roomNumbersTag}>{room.roomNumbers}</span>
+        </div>
+
         <p className={styles.desc}>{room.desc}</p>
 
         <ul className={styles.amenities}>
-          {room.amenities.map(({ icon: Icon, label }) => (
-            <li key={label} className={styles.amenity}>
+          {room.amenities.map(({ icon: Icon, label }, index) => (
+            <li key={index} className={styles.amenity}>
               <Icon size={14} strokeWidth={2} className={styles.amenityIcon} />
               {label}
             </li>
@@ -162,15 +280,15 @@ function RoomCard({ room, onImgClick }: { room: Room; onImgClick: (img: string) 
         <div className={styles.bookBtnWrap}>
           <motion.a
             href={PHONE_HREF}
-            onClick={handleBookClick}
+            onClick={handlePriceClick}
             className={`${styles.bookBtn} ${styles.bookBtnOutline}`}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
           >
-            Выбрать номер
+            Узнать цену и забронировать
           </motion.a>
           <AnimatePresence>
-            {showCall && <CallDropdown onClose={() => setShowCall(false)} />}
+            {showPricePopup && <PriceDropdown onClose={() => setShowPricePopup(false)} />}
           </AnimatePresence>
         </div>
       </div>
@@ -179,7 +297,27 @@ function RoomCard({ room, onImgClick }: { room: Room; onImgClick: (img: string) 
 }
 
 export default function Rooms() {
-  const [selectedImg, setSelectedImg] = useState<string | null>(null)
+  const [galleryModal, setGalleryModal] = useState<{ images: string[]; index: number } | null>(null)
+
+  const showNextImg = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (galleryModal) {
+      setGalleryModal({
+        images: galleryModal.images,
+        index: (galleryModal.index + 1) % galleryModal.images.length,
+      })
+    }
+  }
+
+  const showPrevImg = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (galleryModal) {
+      setGalleryModal({
+        images: galleryModal.images,
+        index: (galleryModal.index - 1 + galleryModal.images.length) % galleryModal.images.length,
+      })
+    }
+  }
 
   return (
     <>
@@ -191,49 +329,67 @@ export default function Rooms() {
               <FadeIn delay={0.1}><h2 className={styles.title}>Выберите свой номер</h2></FadeIn>
             </div>
             <FadeIn delay={0.15} direction="right">
-              <p className={styles.subtitle}>Идеальная чистота, свежее бельё и тишина для вашего отдыха.</p>
+              <p className={styles.subtitle}>6 вариантов размещения. Идеальная чистота, свежее бельё и тишина для вашего отдыха.</p>
             </FadeIn>
           </div>
 
-          <Stagger className={styles.grid} staggerDelay={0.1}>
+          <Stagger className={styles.grid} staggerDelay={0.08}>
             {ROOMS.map((room) => (
-              <RoomCard key={room.id} room={room} onImgClick={setSelectedImg} />
+              <RoomCard 
+                key={room.id} 
+                room={room} 
+                onOpenGallery={(images, index) => setGalleryModal({ images, index })} 
+              />
             ))}
           </Stagger>
         </div>
       </section>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal for Room Photos */}
       <AnimatePresence>
-        {selectedImg && (
+        {galleryModal !== null && galleryModal.images.length > 0 && (
           <motion.div
             className={styles.lightboxOverlay}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImg(null)}
+            onClick={() => setGalleryModal(null)}
           >
             <button 
-              className={styles.lightboxClose}
-              onClick={() => setSelectedImg(null)}
+              className={styles.lightboxClose} 
+              onClick={() => setGalleryModal(null)} 
               aria-label="Закрыть фото"
             >
               <X size={32} />
             </button>
+
+            {galleryModal.images.length > 1 && (
+              <button className={`${styles.lightboxNav} ${styles.lightboxPrev}`} onClick={showPrevImg} aria-label="Предыдущее фото">
+                <ChevronLeft size={36} />
+              </button>
+            )}
+
             <motion.img
-              src={selectedImg}
+              key={galleryModal.index}
+              src={galleryModal.images[galleryModal.index]}
               alt="Увеличенное фото номера"
               className={styles.lightboxImg}
-              referrerPolicy="no-referrer"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ scale: 0.95, opacity: 0, x: -20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
+              onClick={(e) => e.stopPropagation()}
             />
+
+            {galleryModal.images.length > 1 && (
+              <button className={`${styles.lightboxNav} ${styles.lightboxNext}`} onClick={showNextImg} aria-label="Следующее фото">
+                <ChevronRight size={36} />
+              </button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
     </>
   )
 }
+

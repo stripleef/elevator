@@ -3,8 +3,8 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Phone } from 'lucide-react'
 import styles from './Hero.module.css'
 
-const PHONE_NUMBER = '+7 (987) 603-79-43'
-const PHONE_HREF = 'tel:+79876037943'
+const PHONE_NUMBER = '+7 (917) 447-55-41'
+const PHONE_HREF = 'tel:+79174475541'
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false)
@@ -175,7 +175,7 @@ export default function Hero() {
           <motion.div className={styles.stats} variants={item}>
             {[
               { value: '10+', label: 'лет работы' },
-              { value: '3', label: 'типа номеров' },
+              { value: '6', label: 'типов номеров' },
               { value: '24/7', label: 'открыто' },
             ].map(({ value, label }) => (
               <div key={label} className={styles.stat}>

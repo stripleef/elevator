@@ -50,7 +50,7 @@ export default function Footer() {
               {LEGAL.map(({ href, label }) => (
                 <li key={label}><a href={href} className={styles.link}>{label}</a></li>
               ))}
-              <li key="phone"><a href="tel:+79876037943" className={styles.link}>+7 (987) 603-79-43</a></li>
+              <li key="phone"><a href="tel:+79174475541" className={styles.link}>+7 (917) 447-55-41</a></li>
               <li key="whatsapp"><a href="https://wa.me/79174475541" target="_blank" rel="noopener noreferrer" className={styles.link}>WhatsApp</a></li>
             </ul>
           </div>

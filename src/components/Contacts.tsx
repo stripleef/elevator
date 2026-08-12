@@ -9,7 +9,7 @@ const CONTACTS = [
     value: 'Респ. Башкортостан, Мелеузовский р-н, с. Зирган, ул. Гагарина, 1',
     href: undefined,
   },
-  { Icon: Phone, label: 'Телефон', value: '+7 (987) 603-79-43', href: 'tel:+79876037943' },
+  { Icon: Phone, label: 'Телефон', value: '+7 (917) 447-55-41', href: 'tel:+79174475541' },
   { Icon: MessageCircle, label: 'WhatsApp', value: '+7 (917) 447-55-41', href: 'https://wa.me/79174475541' },
   { Icon: Clock, label: 'Режим работы', value: 'Круглосуточно, без выходных', href: undefined },
   { Icon: Building2, label: 'Организация', value: 'ООО «Зирганский Элеватор»', href: undefined },

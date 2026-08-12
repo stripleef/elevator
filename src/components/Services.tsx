@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Utensils, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Utensils, X, ChevronLeft, ChevronRight, Flame } from 'lucide-react'
 import { FadeIn, Stagger, fadeUpItem } from './AnimationUtils'
 import styles from './Services.module.css'
 
@@ -15,24 +15,42 @@ const CANTEEN_IMAGES = [
   './stolovaya4.webp'
 ]
 
+const SAUNA_IMAGES = [
+  './sauna/sauna1.jpg',
+  './sauna/sauna2.jpg',
+  './sauna/sauna3.jpg',
+  './sauna/sauna4.jpg'
+]
+
 export default function Services() {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
-  const carouselRef = useRef<HTMLDivElement>(null)
+  const [activeLightbox, setActiveLightbox] = useState<{ images: string[]; index: number } | null>(null)
+  const canteenRef = useRef<HTMLDivElement>(null)
+  const saunaRef = useRef<HTMLDivElement>(null)
 
   const showNextImg = (e: React.MouseEvent) => {
     e.stopPropagation()
-    if (lightboxIndex !== null) setLightboxIndex((lightboxIndex + 1) % CANTEEN_IMAGES.length)
+    if (activeLightbox) {
+      setActiveLightbox({
+        images: activeLightbox.images,
+        index: (activeLightbox.index + 1) % activeLightbox.images.length
+      })
+    }
   }
 
   const showPrevImg = (e: React.MouseEvent) => {
     e.stopPropagation()
-    if (lightboxIndex !== null) setLightboxIndex((lightboxIndex - 1 + CANTEEN_IMAGES.length) % CANTEEN_IMAGES.length)
+    if (activeLightbox) {
+      setActiveLightbox({
+        images: activeLightbox.images,
+        index: (activeLightbox.index - 1 + activeLightbox.images.length) % activeLightbox.images.length
+      })
+    }
   }
 
-  const scrollCarousel = (direction: 'left' | 'right') => {
-    if (carouselRef.current) {
-      const scrollAmount = carouselRef.current.clientWidth * 0.45
-      carouselRef.current.scrollBy({ left: direction === 'right' ? scrollAmount : -scrollAmount, behavior: 'smooth' })
+  const scrollCarousel = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      const scrollAmount = ref.current.clientWidth * 0.45
+      ref.current.scrollBy({ left: direction === 'right' ? scrollAmount : -scrollAmount, behavior: 'smooth' })
     }
   }
 
@@ -57,21 +75,21 @@ export default function Services() {
               <div className={styles.carouselWrapper}>
                 <button 
                   className={`${styles.carouselNavBtn} ${styles.carouselPrev}`}
-                  onClick={() => scrollCarousel('left')}
+                  onClick={() => scrollCarousel(canteenRef, 'left')}
                   aria-label="Листать влево"
                 >
                   <ChevronLeft size={24} strokeWidth={2} />
                 </button>
-                <div className={styles.carousel} ref={carouselRef}>
+                <div className={styles.carousel} ref={canteenRef}>
                   {CANTEEN_IMAGES.map((img, i) => (
-                    <div key={i} className={styles.carouselImgWrap} onClick={() => setLightboxIndex(i)}>
+                    <div key={i} className={styles.carouselImgWrap} onClick={() => setActiveLightbox({ images: CANTEEN_IMAGES, index: i })}>
                       <img src={img} alt={`Столовая фото ${i+1}`} className={styles.serviceImg} />
                     </div>
                   ))}
                 </div>
                 <button 
                   className={`${styles.carouselNavBtn} ${styles.carouselNext}`}
-                  onClick={() => scrollCarousel('right')}
+                  onClick={() => scrollCarousel(canteenRef, 'right')}
                   aria-label="Листать вправо"
                 >
                   <ChevronRight size={24} strokeWidth={2} />
@@ -93,22 +111,60 @@ export default function Services() {
               </div>
             </motion.div>
 
+            {/* Sauna Block */}
+            <motion.div className={styles.serviceBlock} variants={fadeUpItem}>
+              <div className={styles.carouselWrapper}>
+                <button 
+                  className={`${styles.carouselNavBtn} ${styles.carouselPrev}`}
+                  onClick={() => scrollCarousel(saunaRef, 'left')}
+                  aria-label="Листать влево"
+                >
+                  <ChevronLeft size={24} strokeWidth={2} />
+                </button>
+                <div className={styles.carousel} ref={saunaRef}>
+                  {SAUNA_IMAGES.map((img, i) => (
+                    <div key={i} className={styles.carouselImgWrap} onClick={() => setActiveLightbox({ images: SAUNA_IMAGES, index: i })}>
+                      <img src={img} alt={`Сауна фото ${i+1}`} className={styles.serviceImg} />
+                    </div>
+                  ))}
+                </div>
+                <button 
+                  className={`${styles.carouselNavBtn} ${styles.carouselNext}`}
+                  onClick={() => scrollCarousel(saunaRef, 'right')}
+                  aria-label="Листать вправо"
+                >
+                  <ChevronRight size={24} strokeWidth={2} />
+                </button>
+              </div>
+              <div className={styles.serviceContent}>
+                <div className={styles.serviceIcon}>
+                  <Flame size={20} strokeWidth={2} />
+                </div>
+                <div className={styles.serviceText}>
+                  <h3>Финская сауна и парная</h3>
+                  <p>
+                    Для глубокого расслабления и оздоровления в нашей гостинице работает уединенная парная сауна.
+                    Уютная комната отдыха, идеальная чистота и горячий пар помогут полностью снять усталость с дороги и восстановить силы.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
 
           </Stagger>
         </div>
       </section>
 
-      {/* Lightbox Modal for Canteen */}
+      {/* Lightbox Modal */}
       <AnimatePresence>
-        {lightboxIndex !== null && (
+        {activeLightbox !== null && (
           <motion.div
             className={styles.lightboxOverlay}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setLightboxIndex(null)}
+            onClick={() => setActiveLightbox(null)}
           >
-            <button className={styles.lightboxClose} onClick={() => setLightboxIndex(null)} aria-label="Закрыть">
+            <button className={styles.lightboxClose} onClick={() => setActiveLightbox(null)} aria-label="Закрыть">
               <X size={32} />
             </button>
             
@@ -117,9 +173,9 @@ export default function Services() {
             </button>
 
             <motion.img
-              key={lightboxIndex}
-              src={CANTEEN_IMAGES[lightboxIndex]}
-              alt="Увеличенное фото столовой"
+              key={activeLightbox.index}
+              src={activeLightbox.images[activeLightbox.index]}
+              alt="Увеличенное фото"
               className={styles.lightboxImg}
               initial={{ scale: 0.9, opacity: 0, x: 20 }}
               animate={{ scale: 1, opacity: 1, x: 0 }}

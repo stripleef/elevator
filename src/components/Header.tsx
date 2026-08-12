@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Menu, X } from 'lucide-react'
 import styles from './Header.module.css'
 
-const PHONE_NUMBER = '+7 (987) 603-79-43'
-const PHONE_HREF = 'tel:+79876037943'
+const PHONE_NUMBER = '+7 (917) 447-55-41'
+const PHONE_HREF = 'tel:+79174475541'
 
 const NAV = [
   { href: '#about', label: 'О гостинице' },

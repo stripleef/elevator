@@ -63,22 +63,66 @@
   background: var(--primary-container);
   pointer-events: none;
 }
-.priceBadge {
+.noImgPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(180, 205, 184, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--on-surface-variant);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.priceBadgeBtn {
   position: absolute;
-  top: 16px; right: 16px;
+  top: 14px; right: 14px;
   background: rgba(6, 27, 14, 0.85);
   backdrop-filter: blur(8px);
-  padding: 6px 14px;
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 12px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  color: #d0e9d4;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
 }
-.priceBadge span { font-weight: 400; color: #e2efe4; margin-left: 2px; }
+.priceBadgeBtn:hover {
+  background: #183a25;
+  border-color: #d0e9d4;
+  transform: translateY(-1px);
+}
+
+.photosBadge {
+  position: absolute;
+  bottom: 14px; right: 14px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #e2efe4;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 5;
+}
+
 .featuredBadge {
   position: absolute;
-  top: 16px; left: 16px;
+  top: 14px; left: 14px;
   background: var(--primary-container);
   color: white;
   padding: 5px 12px;
@@ -87,34 +131,52 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  z-index: 5;
 }
+
 /* Body */
 .body {
-  padding: 24px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
+
+.cardHeaderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
 .name {
   font-family: 'EB Garamond', serif;
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 600;
   color: #ffffff;
-  margin-bottom: 10px;
+  line-height: 1.2;
 }
+
+.roomNumbersTag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--surface-tint);
+  letter-spacing: 0.02em;
+}
+
 .desc {
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--on-surface-variant);
-  line-height: 1.65;
+  line-height: 1.6;
   flex: 1;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 .amenities {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 .amenity {
   display: flex;
@@ -125,6 +187,7 @@
   color: var(--on-surface-variant);
 }
 .amenityIcon { color: var(--surface-tint); flex-shrink: 0; }
+
 /* Button */
 .bookBtnWrap {
   position: relative;
@@ -155,10 +218,10 @@
   left: 0;
   right: 0;
   background: #0e291a;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
   z-index: 50;
 }
 .callDropdownText {
@@ -180,8 +243,16 @@
   padding: 10px 14px;
   transition: background 0.2s;
   justify-content: center;
+  text-decoration: none;
 }
 .callDropdownPhone:hover { background: #1e462d; }
+.priceNote {
+  font-size: 12px;
+  color: rgba(226, 239, 228, 0.75);
+  margin-top: 10px;
+  line-height: 1.45;
+  text-align: center;
+}
 
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) {
@@ -193,9 +264,9 @@
 .lightboxOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -223,10 +294,36 @@
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
 }
+
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10000;
+}
+.lightboxNav:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.08);
+}
+.lightboxPrev { left: 24px; }
+.lightboxNext { right: 24px; }
+
 .lightboxImg {
-  max-width: 100%;
-  max-height: 90vh;
+  max-width: 90vw;
+  max-height: 85vh;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
+

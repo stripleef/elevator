@@ -5,12 +5,13 @@ import styles from './About.module.css'
 
 const STATS = [
   { value: '10+', label: 'лет гостеприимства' },
-  { value: '3', label: 'типа номеров' },
+  { value: '6', label: 'типов номеров' },
   { value: '24/7', label: 'работаем для вас' },
   { value: '100%', label: 'свежее бельё' },
 ]
 
 const IMG = './gosti.webp'
+const YANDEX_MAPS_URL = 'https://yandex.ru/maps/?ll=55.913254%2C53.237960&mode=poi&poi%5Bpoint%5D=55.912204%2C53.238335&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D241654012395&z=19.03'
 
 export default function About() {
   return (
@@ -57,7 +58,13 @@ export default function About() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               <img src={IMG} alt="Фасад гостиницы ТИРМЭН" className={styles.img} />
-              <div className={styles.badge}>
+              <a 
+                href={YANDEX_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.badge}
+                style={{ textDecoration: 'none' }}
+              >
                 <div className={styles.badgeIcon}>
                   <MapPin size={18} strokeWidth={2} />
                 </div>
@@ -65,7 +72,7 @@ export default function About() {
                   <div className={styles.badgeTitle}>с. Зирган, ул. Гагарина, 1</div>
                   <div className={styles.badgeSub}>Мелеузовский район, Башкортостан</div>
                 </div>
-              </div>
+              </a>
             </motion.div>
           </FadeIn>
         </div>
