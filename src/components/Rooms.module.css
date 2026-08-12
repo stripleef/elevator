@@ -126,6 +126,9 @@
 }
 .amenityIcon { color: var(--surface-tint); flex-shrink: 0; }
 /* Button */
+.bookBtnWrap {
+  position: relative;
+}
 .bookBtn {
   width: 100%;
   display: block;
@@ -135,20 +138,50 @@
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.03em;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
 }
 .bookBtnOutline {
   background: transparent;
   color: #d0e9d4;
   border: 1.5px solid rgba(180, 205, 184, 0.4);
 }
-.bookBtnOutline:hover { background: #183a25; color: white; border-color: #d0e9d4; }
-.bookBtnFilled {
-  background: #d0e9d4;
-  color: #061b0e;
-  border: 1.5px solid transparent;
+.bookBtnOutline:hover { background: #ffffff; color: #061b0e; border-color: #ffffff; }
+
+/* Call Dropdown */
+.callDropdown {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  background: #0e291a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  z-index: 50;
 }
-.bookBtnFilled:hover { background: #ffffff; color: #061b0e; }
+.callDropdownText {
+  font-size: 13px;
+  color: #e2efe4;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.callDropdownPhone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #183a25;
+  border: 1px solid rgba(180, 205, 184, 0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: background 0.2s;
+  justify-content: center;
+}
+.callDropdownPhone:hover { background: #1e462d; }
 
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) {

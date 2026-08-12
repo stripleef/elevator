@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Search, Users, Calendar } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Search, Users, Calendar, Phone } from 'lucide-react'
 import styles from './BookingBar.module.css'
+
+const PHONE_NUMBER = '+7 (987) 603-79-43'
+const PHONE_HREF = 'tel:+79876037943'
 
 function today() {
   return new Date().toISOString().split('T')[0]
@@ -12,16 +15,69 @@ function addDays(dateStr: string, n: number) {
   return d.toISOString().split('T')[0]
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 860)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  return isMobile
+}
+
+function CallDropdown({ onClose }: { onClose: () => void }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        onClose()
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [onClose])
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.callDropdown}
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.2 }}
+    >
+      <p className={styles.callDropdownText}>
+        Позвоните по этому номеру для бронирования и уточнения всех деталей:
+      </p>
+      <a href={PHONE_HREF} className={styles.callDropdownPhone}>
+        <Phone size={16} strokeWidth={2} />
+        {PHONE_NUMBER}
+      </a>
+    </motion.div>
+  )
+}
+
 export default function BookingBar() {
   const [checkin, setCheckin] = useState(today())
   const [checkout, setCheckout] = useState(addDays(today(), 1))
   const [guests, setGuests] = useState('2')
+  const [showCall, setShowCall] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     if (new Date(checkout) <= new Date(checkin)) {
       setCheckout(addDays(checkin, 1))
     }
   }, [checkin, checkout])
+
+  const handleSubmitClick = (e: React.MouseEvent) => {
+    if (!isMobile) {
+      e.preventDefault()
+      setShowCall(prev => !prev)
+    }
+  }
 
   return (
     <section className={styles.section} aria-label="Форма бронирования">
@@ -83,15 +139,21 @@ export default function BookingBar() {
           </div>
 
           {/* Submit */}
-          <motion.a
-            href="tel:+79876037943"
-            className={styles.submit}
-            whileHover={{ scale: 1.03, boxShadow: '0 8px 24px rgba(27,48,34,0.25)' }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <Search size={16} strokeWidth={2.5} />
-            Проверить
-          </motion.a>
+          <div className={styles.submitWrap}>
+            <motion.a
+              href={PHONE_HREF}
+              onClick={handleSubmitClick}
+              className={styles.submit}
+              whileHover={{ scale: 1.03, boxShadow: '0 8px 24px rgba(27,48,34,0.25)' }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Search size={16} strokeWidth={2.5} />
+              Проверить
+            </motion.a>
+            <AnimatePresence>
+              {showCall && <CallDropdown onClose={() => setShowCall(false)} />}
+            </AnimatePresence>
+          </div>
         </motion.div>
       </div>
     </section>

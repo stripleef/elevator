@@ -1,8 +1,22 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Wifi, Tv, Wind, ShowerHead, Users, X } from 'lucide-react'
+import { Wifi, Tv, Wind, ShowerHead, Users, X, Phone } from 'lucide-react'
 import { FadeIn, Stagger, fadeUpItem } from './AnimationUtils'
 import styles from './Rooms.module.css'
+
+const PHONE_NUMBER = '+7 (987) 603-79-43'
+const PHONE_HREF = 'tel:+79876037943'
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 860)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  return isMobile
+}
 
 interface Room {
   id: string
@@ -55,8 +69,50 @@ const ROOMS: Room[] = [
   },
 ]
 
+function CallDropdown({ onClose }: { onClose: () => void }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        onClose()
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [onClose])
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.callDropdown}
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.2 }}
+    >
+      <p className={styles.callDropdownText}>
+        Позвоните по этому номеру для бронирования и уточнения всех деталей:
+      </p>
+      <a href={PHONE_HREF} className={styles.callDropdownPhone}>
+        <Phone size={16} strokeWidth={2} />
+        {PHONE_NUMBER}
+      </a>
+    </motion.div>
+  )
+}
+
 function RoomCard({ room, onImgClick }: { room: Room; onImgClick: (img: string) => void }) {
   const [hovered, setHovered] = useState(false)
+  const [showCall, setShowCall] = useState(false)
+  const isMobile = useIsMobile()
+
+  const handleBookClick = (e: React.MouseEvent) => {
+    if (!isMobile) {
+      e.preventDefault()
+      setShowCall(prev => !prev)
+    }
+  }
 
   return (
     <motion.article
@@ -103,14 +159,20 @@ function RoomCard({ room, onImgClick }: { room: Room; onImgClick: (img: string) 
           ))}
         </ul>
 
-        <motion.a
-          href="tel:+79876037943"
-          className={`${styles.bookBtn} ${room.featured ? styles.bookBtnFilled : styles.bookBtnOutline}`}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.97 }}
-        >
-          Выбрать номер
-        </motion.a>
+        <div className={styles.bookBtnWrap}>
+          <motion.a
+            href={PHONE_HREF}
+            onClick={handleBookClick}
+            className={`${styles.bookBtn} ${styles.bookBtnOutline}`}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Выбрать номер
+          </motion.a>
+          <AnimatePresence>
+            {showCall && <CallDropdown onClose={() => setShowCall(false)} />}
+          </AnimatePresence>
+        </div>
       </div>
     </motion.article>
   )
