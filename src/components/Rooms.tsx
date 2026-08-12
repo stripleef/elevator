@@ -160,7 +160,7 @@ function PriceDropdown({ onClose }: { onClose: () => void }) {
         {PHONE_NUMBER}
       </a>
       <p className={styles.priceNote}>
-        Стоимость зависит от количества человек и дней проживания, но она вас приятно удивят!
+        Стоимость зависит от количества человек и дней проживания, но она вас приятно удивит!
       </p>
     </motion.div>
   )
