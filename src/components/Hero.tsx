@@ -1,13 +1,62 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Phone } from 'lucide-react'
 import styles from './Hero.module.css'
+
+const PHONE_NUMBER = '+7 (987) 603-79-43'
+const PHONE_HREF = 'tel:+79876037943'
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 860)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  return isMobile
+}
+
+function CallDropdown({ onClose }: { onClose: () => void }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        onClose()
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [onClose])
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.callDropdown}
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.2 }}
+    >
+      <p className={styles.callDropdownText}>
+        Позвоните по этому номеру для бронирования и уточнения всех деталей:
+      </p>
+      <a href={PHONE_HREF} className={styles.callDropdownPhone}>
+        <Phone size={16} strokeWidth={2} />
+        {PHONE_NUMBER}
+      </a>
+    </motion.div>
+  )
+}
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const videoRefMobileBg = useRef<HTMLVideoElement>(null)
   const [videoEnded, setVideoEnded] = useState(false)
+  const [showCall, setShowCall] = useState(false)
+  const isMobile = useIsMobile()
   const { scrollY } = useScroll()
   const bgY = useTransform(scrollY, [0, 700], [0, 180])
   const opacity = useTransform(scrollY, [0, 500], [1, 0])
@@ -20,6 +69,13 @@ export default function Hero() {
       videoRefMobileBg.current.playbackRate = 0.85
     }
   }, [])
+
+  const handlePhoneClick = (e: React.MouseEvent) => {
+    if (!isMobile) {
+      e.preventDefault()
+      setShowCall(prev => !prev)
+    }
+  }
 
   // Staggered text animations
   const container = {
@@ -98,15 +154,21 @@ export default function Hero() {
               Смотреть номера
               <ArrowRight size={16} strokeWidth={2.5} />
             </motion.a>
-            <motion.a
-              href="tel:+79876037943"
-              className={styles.btnSecondary}
-              whileHover={{ background: 'rgba(255,255,255,0.22)' }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <Phone size={16} strokeWidth={2} />
-              +7 (987) 603-79-43
-            </motion.a>
+            <div className={styles.phoneBtnWrap}>
+              <motion.a
+                href={PHONE_HREF}
+                onClick={handlePhoneClick}
+                className={styles.btnSecondary}
+                whileHover={{ background: 'rgba(255,255,255,0.22)' }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Phone size={16} strokeWidth={2} />
+                Позвонить
+              </motion.a>
+              <AnimatePresence>
+                {showCall && <CallDropdown onClose={() => setShowCall(false)} />}
+              </AnimatePresence>
+            </div>
           </motion.div>
 
           {/* Stats row */}

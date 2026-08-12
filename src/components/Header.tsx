@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Menu, X } from 'lucide-react'
 import styles from './Header.module.css'
+
+const PHONE_NUMBER = '+7 (987) 603-79-43'
+const PHONE_HREF = 'tel:+79876037943'
 
 const NAV = [
   { href: '#about', label: 'О гостинице' },
@@ -11,12 +14,58 @@ const NAV = [
   { href: '#contacts', label: 'Контакты' },
 ]
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 860)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  return isMobile
+}
+
+function CallDropdown({ onClose }: { onClose: () => void }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        onClose()
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [onClose])
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.callDropdown}
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.2 }}
+    >
+      <p className={styles.callDropdownText}>
+        Позвоните по этому номеру для бронирования и уточнения всех деталей:
+      </p>
+      <a href={PHONE_HREF} className={styles.callDropdownPhone}>
+        <Phone size={16} strokeWidth={2} />
+        {PHONE_NUMBER}
+      </a>
+    </motion.div>
+  )
+}
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [lastY, setLastY] = useState(0)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [active, setActive] = useState('')
+  const [showCall, setShowCall] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     const onScroll = () => {
@@ -48,6 +97,13 @@ export default function Header() {
   }, [])
 
   const closeMobile = () => setMobileOpen(false)
+
+  const handleCallClick = (e: React.MouseEvent) => {
+    if (!isMobile) {
+      e.preventDefault()
+      setShowCall(prev => !prev)
+    }
+  }
 
   return (
     <>
@@ -95,10 +151,15 @@ export default function Header() {
           </nav>
 
           {/* CTA */}
-          <a href="tel:+79876037943" className={styles.callBtn}>
-            <Phone size={14} strokeWidth={2.5} />
-            <span>Позвонить</span>
-          </a>
+          <div className={styles.callBtnWrap}>
+            <a href={PHONE_HREF} onClick={handleCallClick} className={styles.callBtn}>
+              <Phone size={14} strokeWidth={2.5} />
+              <span>Позвонить</span>
+            </a>
+            <AnimatePresence>
+              {showCall && <CallDropdown onClose={() => setShowCall(false)} />}
+            </AnimatePresence>
+          </div>
 
           {/* Burger */}
           <button
@@ -165,7 +226,7 @@ export default function Header() {
                 ))}
               </nav>
               <motion.a
-                href="tel:+79876037943"
+                href={PHONE_HREF}
                 className={styles.mobileCallBtn}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -173,7 +234,7 @@ export default function Header() {
                 onClick={closeMobile}
               >
                 <Phone size={16} />
-                +7 (987) 603-79-43
+                {PHONE_NUMBER}
               </motion.a>
             </motion.div>
           </>

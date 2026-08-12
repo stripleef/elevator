@@ -80,11 +80,48 @@
   flex-shrink: 0;
   white-space: nowrap;
 }
+.callBtnWrap {
+  position: relative;
+  flex-shrink: 0;
+}
 .callBtn:hover {
   background: var(--primary);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(27, 48, 34, 0.25);
 }
+.callDropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 280px;
+  background: #0e291a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  z-index: 200;
+}
+.callDropdownText {
+  font-size: 13px;
+  color: #e2efe4;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.callDropdownPhone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #183a25;
+  border: 1px solid rgba(180, 205, 184, 0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: background 0.2s;
+  justify-content: center;
+}
+.callDropdownPhone:hover { background: #1e462d; }
 .burger {
   display: none;
   align-items: center;
