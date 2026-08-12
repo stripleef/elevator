@@ -178,6 +178,8 @@ function RoomCard({
 }) {
   const [hovered, setHovered] = useState(false)
   const [showPricePopup, setShowPricePopup] = useState(false)
+  const [activeIdx, setActiveIdx] = useState(0)
+  const sliderRef = useRef<HTMLDivElement>(null)
   const isMobile = useIsMobile()
 
   const handlePriceClick = (e: React.MouseEvent) => {
@@ -187,8 +189,17 @@ function RoomCard({
     }
   }
 
+  const handleScroll = () => {
+    if (sliderRef.current) {
+      const { scrollLeft, clientWidth } = sliderRef.current
+      if (clientWidth > 0) {
+        const idx = Math.round(scrollLeft / clientWidth)
+        setActiveIdx(idx)
+      }
+    }
+  }
+
   const hasImages = room.images.length > 0
-  const mainImage = hasImages ? room.images[0] : null
 
   return (
     <motion.article
@@ -199,21 +210,27 @@ function RoomCard({
       whileHover={{ y: -6 }}
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
     >
-      <div 
-        className={styles.imgWrap} 
-        onClick={() => hasImages && onOpenGallery(room.images, 0)}
-        style={{ cursor: hasImages ? 'pointer' : 'default' }}
-        title={hasImages ? 'Нажмите, чтобы посмотреть все фото' : 'Фотографий пока нет'}
-      >
-        {mainImage ? (
-          <motion.img
-            src={mainImage}
-            alt={`Номер ${room.name}`}
-            className={styles.img}
-            referrerPolicy="no-referrer"
-            animate={{ scale: hovered ? 1.06 : 1 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-          />
+      <div className={styles.imgWrap}>
+        {hasImages ? (
+          <div 
+            ref={sliderRef}
+            className={styles.imgCarousel}
+            onScroll={handleScroll}
+          >
+            {room.images.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt={`Номер ${room.name} фото ${i + 1}`}
+                className={styles.imgCarouselItem}
+                referrerPolicy="no-referrer"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onOpenGallery(room.images, i)
+                }}
+              />
+            ))}
+          </div>
         ) : (
           <div className={styles.noImgPlaceholder}>
             <Images size={40} strokeWidth={1.5} />
@@ -242,12 +259,24 @@ function RoomCard({
           </div>
         )}
 
+        {/* Scroll Dots indicator for multiple images */}
+        {hasImages && room.images.length > 1 && (
+          <div className={styles.carouselDots}>
+            {room.images.map((_, i) => (
+              <span
+                key={i}
+                className={`${styles.carouselDot} ${i === activeIdx ? styles.carouselDotActive : ''}`}
+              />
+            ))}
+          </div>
+        )}
+
         {room.badge && <div className={styles.featuredBadge}>{room.badge}</div>}
 
         {hasImages && (
           <motion.div
             className={styles.imgOverlay}
-            animate={{ opacity: hovered ? 0.15 : 0 }}
+            animate={{ opacity: hovered ? 0.12 : 0 }}
             transition={{ duration: 0.3 }}
           />
         )}

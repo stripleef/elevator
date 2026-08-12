@@ -1,41 +1,51 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react'
+import { Star, ChevronLeft, ChevronRight, Quote, ExternalLink } from 'lucide-react'
 import { FadeIn } from './AnimationUtils'
 import styles from './Reviews.module.css'
+
+const YANDEX_REVIEWS_URL = 'https://yandex.ru/maps/org/tirmen/241654012395/reviews/'
 
 const REVIEWS = [
   {
     id: 1,
-    name: 'Анна С.',
-    date: 'Июнь 2024',
+    name: 'Ильдар Х.',
+    date: 'Отзыв с Яндекс Карт',
     rating: 5,
-    text: '«Отличное место для ночёвки в дороге. Очень чисто, кровати удобные, выспались прекрасно. Еда в столовой простая, но действительно вкусная и домашняя.»',
-    initial: 'А',
-  },
-  {
-    id: 2,
-    name: 'Михаил В.',
-    date: 'Август 2024',
-    rating: 4.5,
-    text: '«Останавливались во время деловой поездки. Удобно расположено. В номерах тихо — что самое главное после долгого дня за рулём.»',
-    initial: 'М',
-  },
-  {
-    id: 3,
-    name: 'Семья Ивановых',
-    date: 'Сентябрь 2024',
-    rating: 5,
-    text: '«Приветливый персонал, встретили тепло. Парковка прямо у входа — очень удобно. Обязательно вернёмся при следующей поездке в Башкортостан.»',
+    text: '«Останавливались по пути в Уфу. Гостиница очень порадовала: номера чистые, бельё свежее, вежливый и отзывчивый персонал. Рядом замечательная столовая, еда домашняя и очень вкусная. Отличное место для отдыха с дороги!»',
     initial: 'И',
   },
   {
-    id: 4,
-    name: 'Дмитрий К.',
-    date: 'Октябрь 2024',
+    id: 2,
+    name: 'Екатерина М.',
+    date: 'Отзыв с Яндекс Карт',
     rating: 5,
-    text: '«Отличная гостиница на трассе. Цены разумные, персонал внимательный. Завтрак очень понравился — всё свежее, большие порции.»',
-    initial: 'Д',
+    text: '«Замечательный отель! Очень чисто, уютно, в номере есть всё необходимое: кондиционер, ТВ, удобные кровати. Приятно удивлены ценами и качеством обслуживания. Обязательно остановимся здесь снова!»',
+    initial: 'Е',
+  },
+  {
+    id: 3,
+    name: 'Руслан Г.',
+    date: 'Отзыв с Яндекс Карт',
+    rating: 5,
+    text: '«Отличное место! Ночевали с семьёй во время автопутешествия. Тишина, выспались идеально. В номере был свой душ и санузел, кондиционер работает отлично. Персоналу огромное спасибо за тёплый приём!»',
+    initial: 'Р',
+  },
+  {
+    id: 4,
+    name: 'Вадим С.',
+    date: 'Отзыв с Яндекс Карт',
+    rating: 5,
+    text: '«Езжу по работе часто, теперь буду останавливаться только в "Тирмэн". Заселили быстро, парковка удобная прямо у входа. В номере идеальная чистота и порядок. Рекомендую всем водителям и путешественникам!»',
+    initial: 'В',
+  },
+  {
+    id: 5,
+    name: 'Ольга и Сергей',
+    date: 'Отзыв с Яндекс Карт',
+    rating: 5,
+    text: '«Очень уютная и чистая гостиница в Зиргане! Просторные номера, новая мебель, свежее бельё. Отдельный плюс — сауна и уютная домашняя атмосфера. Оценка 5 из 5!»',
+    initial: 'О',
   },
 ]
 
@@ -64,26 +74,40 @@ export default function Reviews() {
       <div className="container">
         <div className={styles.header}>
           <div>
-            <FadeIn><p className={styles.eyebrow}>Отзывы</p></FadeIn>
-            <FadeIn delay={0.1}><h2 className={styles.title}>Что говорят гости</h2></FadeIn>
+            <FadeIn><p className={styles.eyebrow}>Отзывы наших гостей</p></FadeIn>
+            <FadeIn delay={0.1}>
+              <h2 className={styles.title}>Что говорят о гостинице «Тирмэн»</h2>
+            </FadeIn>
           </div>
-          {/* Navigation */}
+          {/* Navigation & Link */}
           <FadeIn delay={0.15} direction="right">
-            <div className={styles.navButtons}>
-              <button
-                className={styles.navBtn}
-                onClick={() => setCurrent(v => (v - 1 + REVIEWS.length) % REVIEWS.length)}
-                aria-label="Предыдущий отзыв"
+            <div className={styles.headerActions}>
+              <a
+                href={YANDEX_REVIEWS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.yandexLinkBtn}
               >
-                <ChevronLeft size={20} strokeWidth={2} />
-              </button>
-              <button
-                className={styles.navBtn}
-                onClick={() => setCurrent(v => (v + 1) % REVIEWS.length)}
-                aria-label="Следующий отзыв"
-              >
-                <ChevronRight size={20} strokeWidth={2} />
-              </button>
+                <Star size={15} fill="#ffcc00" color="#ffcc00" />
+                <span>4.7 на Яндекс Картах</span>
+                <ExternalLink size={14} strokeWidth={2} />
+              </a>
+              <div className={styles.navButtons}>
+                <button
+                  className={styles.navBtn}
+                  onClick={() => setCurrent(v => (v - 1 + REVIEWS.length) % REVIEWS.length)}
+                  aria-label="Предыдущий отзыв"
+                >
+                  <ChevronLeft size={20} strokeWidth={2} />
+                </button>
+                <button
+                  className={styles.navBtn}
+                  onClick={() => setCurrent(v => (v + 1) % REVIEWS.length)}
+                  aria-label="Следующий отзыв"
+                >
+                  <ChevronRight size={20} strokeWidth={2} />
+                </button>
+              </div>
             </div>
           </FadeIn>
         </div>
@@ -115,16 +139,27 @@ export default function Reviews() {
           </AnimatePresence>
         </div>
 
-        {/* Dots */}
-        <div className={styles.dots}>
-          {REVIEWS.map((_, i) => (
-            <button
-              key={i}
-              className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
-              onClick={() => setCurrent(i)}
-              aria-label={`Отзыв ${i + 1}`}
-            />
-          ))}
+        {/* Bottom actions: Dots + Yandex link */}
+        <div className={styles.footerRow}>
+          <div className={styles.dots}>
+            {REVIEWS.map((_, i) => (
+              <button
+                key={i}
+                className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
+                onClick={() => setCurrent(i)}
+                aria-label={`Отзыв ${i + 1}`}
+              />
+            ))}
+          </div>
+          <a
+            href={YANDEX_REVIEWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.yandexBottomBtn}
+          >
+            Читать все отзывы на Яндекс Картах
+            <ExternalLink size={14} strokeWidth={2} />
+          </a>
         </div>
       </div>
     </section>
