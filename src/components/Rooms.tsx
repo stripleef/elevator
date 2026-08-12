@@ -242,7 +242,11 @@ function RoomCard({
         )}
 
         {/* Price Badge Container on top of Card Image */}
-        <div className={styles.priceBadgeContainer}>
+        <div 
+          className={styles.priceBadgeContainer}
+          onMouseEnter={() => setShowPricePopup(true)}
+          onMouseLeave={() => setShowPricePopup(false)}
+        >
           <button
             type="button"
             className={styles.priceBadgeBtn}
