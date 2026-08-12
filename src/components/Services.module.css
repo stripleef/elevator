@@ -142,6 +142,18 @@
   transform: scale(1.1);
 }
 
+.canteenIcon {
+  transition: all 0.3s ease;
+}
+.canteenBlock:hover .canteenIcon,
+.canteenIcon:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
 /* Specific styling for Canteen block on top */
 .canteenContent {
   display: flex;

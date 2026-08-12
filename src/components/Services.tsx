@@ -70,7 +70,7 @@ export default function Services() {
           <Stagger className={styles.servicesList} staggerDelay={0.1}>
             
             {/* Canteen Block */}
-            <motion.div className={styles.serviceBlock} variants={fadeUpItem}>
+            <motion.div className={`${styles.serviceBlock} ${styles.canteenBlock}`} variants={fadeUpItem}>
               <div className={styles.carouselWrapper}>
                 <button 
                   className={`${styles.carouselNavBtn} ${styles.carouselPrev}`}
@@ -95,7 +95,7 @@ export default function Services() {
                 </button>
               </div>
               <div className={styles.serviceContent}>
-                <div className={styles.serviceIcon}>
+                <div className={`${styles.serviceIcon} ${styles.canteenIcon}`}>
                   <Utensils size={20} strokeWidth={2} />
                 </div>
                 <div className={styles.serviceText}>

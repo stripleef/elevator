@@ -48,7 +48,6 @@ const ROOMS: Room[] = [
     id: 'standart-1',
     name: 'СТАНДАРТ',
     badge: 'Популярный',
-    featured: true,
     images: [
       './rooms/standart2/stan.jpg',
       './rooms/standart2/stan2.jpg',
@@ -203,7 +202,7 @@ function RoomCard({
 
   return (
     <motion.article
-      className={`${styles.card} ${room.featured ? styles.cardFeatured : ''}`}
+      className={styles.card}
       variants={fadeUpItem}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
