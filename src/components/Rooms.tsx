@@ -21,7 +21,6 @@ function useIsMobile() {
 interface Room {
   id: string
   name: string
-  roomNumbers: string
   badge?: string
   images: string[]
   desc: string
@@ -33,7 +32,6 @@ const ROOMS: Room[] = [
   {
     id: 'ekonom',
     name: 'ЭКОНОМ',
-    roomNumbers: 'Номера: 1, 2, 3, 4, 6, 14, 15, 16, 18, 19',
     images: [
       './rooms/ekonom/stand.jpg',
       './rooms/ekonom/stand2.jpg',
@@ -49,12 +47,11 @@ const ROOMS: Room[] = [
   {
     id: 'standart-1',
     name: 'СТАНДАРТ',
-    roomNumbers: 'Номер: 5',
     badge: 'Популярный',
     featured: true,
     images: [
-      './rooms/standart1/standart1.jpg',
-      './rooms/standart1/standart2.jpg',
+      './rooms/standart2/stan.jpg',
+      './rooms/standart2/stan2.jpg',
     ],
     desc: 'Комфортный номер с одной двухспальной и одной 1,5-спальной кроватью. Общий душ и туалет расположены на этаже.',
     amenities: [
@@ -68,10 +65,9 @@ const ROOMS: Room[] = [
   {
     id: 'standart-2',
     name: 'СТАНДАРТ',
-    roomNumbers: 'Номера: 7, 20',
     images: [
-      './rooms/standart2/stan.jpg',
-      './rooms/standart2/stan2.jpg',
+      './rooms/standart1/standart1.jpg',
+      './rooms/standart1/standart2.jpg',
     ],
     desc: 'Уютный двухместный номер с двухспальной кроватью. Удобства (душ и туалет) расположены на этаже.',
     amenities: [
@@ -85,7 +81,6 @@ const ROOMS: Room[] = [
   {
     id: 'komfort-1',
     name: 'КОМФОРТ',
-    roomNumbers: 'Номера: 10, 12',
     images: [
       './rooms/komfort1/komfort1.jpg',
       './rooms/komfort1/komfort2.jpg',
@@ -105,7 +100,6 @@ const ROOMS: Room[] = [
   {
     id: 'komfort-2',
     name: 'КОМФОРТ',
-    roomNumbers: 'Номера: 8, 9',
     images: [
       './rooms/komfort2/komf.jpg',
       './rooms/komfort2/komf2.jpg',
@@ -126,7 +120,6 @@ const ROOMS: Room[] = [
   {
     id: 'komfort-3',
     name: 'КОМФОРТ (Семейный)',
-    roomNumbers: 'Номер: 11',
     images: [],
     desc: 'Большой многоместный номер «Комфорт» с одной двухспальной и тремя односпальными кроватями, душем, туалетом и холодильником.',
     amenities: [
@@ -261,10 +254,7 @@ function RoomCard({
       </div>
 
       <div className={styles.body}>
-        <div className={styles.cardHeaderInfo}>
-          <h3 className={styles.name}>{room.name}</h3>
-          <span className={styles.roomNumbersTag}>{room.roomNumbers}</span>
-        </div>
+        <h3 className={styles.name}>{room.name}</h3>
 
         <p className={styles.desc}>{room.desc}</p>
 
