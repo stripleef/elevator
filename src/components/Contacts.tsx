@@ -51,14 +51,14 @@ export default function Contacts() {
           <FadeIn delay={0.2} direction="left">
             <div className={styles.mapCard}>
               <iframe
-                src="https://yandex.ru/map-widget/v1/?ll=55.912361%2C53.238677&z=17&pt=55.912204%2C53.238335%2Cpm2rdm&l=map&lang=ru_RU"
+                src="https://yandex.ru/map-widget/v1/org/tirmen/241654012395/"
                 className={styles.mapIframe}
                 title="Расположение гостиницы ТИРМЭН на карте"
                 allowFullScreen
                 referrerPolicy="no-referrer"
               />
               <a
-                href="https://yandex.ru/maps/?ll=55.913254%2C53.237960&mode=poi&poi%5Bpoint%5D=55.912204%2C53.238335&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D241654012395&z=19"
+                href="https://yandex.ru/maps/org/tirmen/241654012395/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.mapOpenBtn}
