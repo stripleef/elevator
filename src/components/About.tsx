@@ -85,13 +85,11 @@ export default function About() {
           <FadeIn delay={0.25}>
             <div className={styles.awardCard}>
               <div className={styles.awardLeft}>
-                <div className={styles.awardIconCircle}>
-                  <Trophy size={28} strokeWidth={1.75} />
+                <div className={styles.awardIconBadge}>
+                  <Trophy size={20} strokeWidth={2} />
                 </div>
                 <div className={styles.awardInfo}>
-                  <div className={styles.awardHeaderRow}>
-                    <span className={styles.awardTag}>НАША ГОРДОСТЬ &bull; 2025</span>
-                  </div>
+                  <p className={styles.awardTag}>Признание и награды &bull; 2025</p>
                   <h3 className={styles.awardTitle}>
                     Победитель конкурса «Лучший объект придорожного сервиса Республики Башкортостан 2025»
                   </h3>
@@ -103,7 +101,7 @@ export default function About() {
                     className={styles.awardViewBtn}
                     onClick={() => setShowDiplomaModal(true)}
                   >
-                    <Award size={16} strokeWidth={2} />
+                    <Award size={15} strokeWidth={2} />
                     <span>Посмотреть официальный диплом</span>
                   </button>
                 </div>
@@ -116,7 +114,7 @@ export default function About() {
               >
                 <img src="./diplom.jpg" alt="Диплом лучший объект придорожного сервиса РБ 2025" className={styles.diplomaImg} />
                 <div className={styles.diplomaOverlay}>
-                  <Maximize2 size={22} strokeWidth={2} />
+                  <Maximize2 size={20} strokeWidth={2} />
                   <span>Открыть диплом</span>
                 </div>
               </div>

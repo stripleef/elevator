@@ -11,6 +11,7 @@ interface Room {
   id: string
   name: string
   badge?: string
+  price: string
   images: string[]
   desc: string
   amenities: { icon: React.FC<{ size: number; strokeWidth: number; className?: string }>; label: string }[]
@@ -21,6 +22,7 @@ const ROOMS: Room[] = [
   {
     id: 'ekonom',
     name: 'ЭКОНОМ',
+    price: 'от 1 100 ₽ / сут.',
     images: [
       './rooms/ekonom/stand.jpg',
       './rooms/ekonom/stand2.jpg',
@@ -38,6 +40,7 @@ const ROOMS: Room[] = [
     id: 'standart-1',
     name: 'СТАНДАРТ',
     badge: 'Популярный',
+    price: 'от 1 500 ₽ / сут.',
     images: [
       './rooms/standart2/stan.jpg',
       './rooms/standart2/stan2.jpg',
@@ -54,6 +57,7 @@ const ROOMS: Room[] = [
   {
     id: 'standart-2',
     name: 'СТАНДАРТ',
+    price: 'от 1 500 ₽ / сут.',
     images: [
       './rooms/standart1/standart1.jpg',
       './rooms/standart1/standart2.jpg',
@@ -70,6 +74,7 @@ const ROOMS: Room[] = [
   {
     id: 'komfort-1',
     name: 'КОМФОРТ',
+    price: 'от 2 500 ₽ / сут.',
     images: [
       './rooms/komfort1/komfort1.jpg',
       './rooms/komfort1/komfort2.jpg',
@@ -89,6 +94,7 @@ const ROOMS: Room[] = [
   {
     id: 'komfort-2',
     name: 'КОМФОРТ',
+    price: 'от 2 500 ₽ / сут.',
     images: [
       './rooms/komfort2/komf.jpg',
       './rooms/komfort2/komf2.jpg',
@@ -109,6 +115,7 @@ const ROOMS: Room[] = [
   {
     id: 'komfort-3',
     name: 'КОМФОРТ (Семейный)',
+    price: 'от 2 500 ₽ / сут.',
     images: [],
     desc: 'Большой многоместный номер «Комфорт» с одной двухспальной и тремя односпальными кроватями, душем, туалетом и холодильником.',
     amenities: [
@@ -122,7 +129,7 @@ const ROOMS: Room[] = [
   },
 ]
 
-function PriceDropdown({ onClose }: { onClose: () => void }) {
+function PriceDropdown({ roomPrice, onClose }: { roomPrice?: string; onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -149,7 +156,8 @@ function PriceDropdown({ onClose }: { onClose: () => void }) {
       transition={{ duration: 0.2 }}
     >
       <p className={styles.callDropdownText}>
-        Для уточнения всех цен и бронирования звоните по номеру:
+        {roomPrice ? `Проживание ${roomPrice} (за 1 чел.). ` : ''}
+        Для уточнения точной цены и бронирования звоните:
       </p>
       <a 
         href={PHONE_HREF} 
@@ -233,18 +241,23 @@ function RoomCard({
           </div>
         )}
 
-        {/* Price Tag Button on top of Card Image */}
-        <button
-          type="button"
-          className={styles.priceBadgeBtn}
-          onClick={(e) => {
-            e.stopPropagation()
-            handlePriceClick(e)
-          }}
-        >
-          <HelpCircle size={14} strokeWidth={2.5} />
-          Узнать цену
-        </button>
+        {/* Price Badge Container on top of Card Image */}
+        <div className={styles.priceBadgeContainer}>
+          <button
+            type="button"
+            className={styles.priceBadgeBtn}
+            onClick={(e) => {
+              e.stopPropagation()
+              handlePriceClick(e)
+            }}
+          >
+            <span>{room.price}</span>
+            <HelpCircle size={13} strokeWidth={2.5} className={styles.priceHelpIcon} />
+          </button>
+          <div className={styles.priceTooltip}>
+            <span>Цена за 1 человека в сутки</span>
+          </div>
+        </div>
 
         {/* Photos indicator badge */}
         {hasImages && (
@@ -299,10 +312,10 @@ function RoomCard({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
           >
-            Узнать цену и забронировать
+            Узнать точную цену и забронировать
           </motion.a>
           <AnimatePresence>
-            {showPricePopup && <PriceDropdown onClose={() => setShowPricePopup(false)} />}
+            {showPricePopup && <PriceDropdown roomPrice={room.price} onClose={() => setShowPricePopup(false)} />}
           </AnimatePresence>
         </div>
       </div>
