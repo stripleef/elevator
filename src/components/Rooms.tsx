@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Wifi, Tv, Wind, ShowerHead, Users, X, Phone, Images, ChevronLeft, ChevronRight, HelpCircle } from 'lucide-react'
+import { Wifi, Tv, Wind, ShowerHead, Users, X, Phone, Images, ChevronLeft, ChevronRight, HelpCircle, Snowflake } from 'lucide-react'
 import { FadeIn, Stagger, fadeUpItem } from './AnimationUtils'
 import styles from './Rooms.module.css'
 
@@ -112,7 +112,7 @@ const ROOMS: Room[] = [
       { icon: Users, label: '2 односпальные кровати' },
       { icon: ShowerHead, label: 'Свой душ и санузел' },
       { icon: Tv, label: 'ТВ' },
-      { icon: Wind, label: 'Холодильник' },
+      { icon: Snowflake, label: 'Холодильник' },
       { icon: Wind, label: 'Кондиционер' },
       { icon: Wifi, label: 'Wi-Fi' },
     ],
@@ -126,7 +126,7 @@ const ROOMS: Room[] = [
       { icon: Users, label: '1 двуспальная + 3 односпальные' },
       { icon: ShowerHead, label: 'Свой душ и санузел' },
       { icon: Tv, label: 'ТВ' },
-      { icon: Wind, label: 'Холодильник' },
+      { icon: Snowflake, label: 'Холодильник' },
       { icon: Wind, label: 'Кондиционер' },
       { icon: Wifi, label: 'Wi-Fi' },
     ],

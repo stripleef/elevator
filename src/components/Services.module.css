@@ -130,6 +130,18 @@
   color: #d0e9d4;
 }
 
+.saunaIcon {
+  transition: all 0.3s ease;
+}
+.saunaBlock:hover .saunaIcon,
+.saunaIcon:hover {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  transform: scale(1.1);
+}
+
 /* Specific styling for Canteen block on top */
 .canteenContent {
   display: flex;

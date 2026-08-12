@@ -4,7 +4,7 @@ import { FadeIn, Stagger, fadeUpItem } from './AnimationUtils'
 import styles from './About.module.css'
 
 const STATS = [
-  { value: '10+', label: 'лет гостеприимства' },
+  { value: '3+', label: 'года гостеприимства' },
   { value: '6', label: 'типов номеров' },
   { value: '24/7', label: 'работаем для вас' },
   { value: '100%', label: 'свежее бельё' },

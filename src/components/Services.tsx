@@ -11,8 +11,7 @@ const CANTEEN_IMAGES = [
   './stolovaya13.jpg',
   './stolovay.webp',
   './stolovaya2.webp',
-  './stolovaya3.webp',
-  './stolovaya4.webp'
+  './stolovaya3.webp'
 ]
 
 const SAUNA_IMAGES = [
@@ -106,13 +105,12 @@ export default function Services() {
                     наша выпечка славится на всю округу. Столовая работает ежедневно с 8:30 до 21:00, что делает её идеальным 
                     местом для отдыха и перекуса как для гостей отеля, так и для проезжающих водителей.
                   </p>
-                  <a href="#" className={styles.serviceLink}>Ознакомиться с меню</a>
                 </div>
               </div>
             </motion.div>
 
             {/* Sauna Block */}
-            <motion.div className={styles.serviceBlock} variants={fadeUpItem}>
+            <motion.div className={`${styles.serviceBlock} ${styles.saunaBlock}`} variants={fadeUpItem}>
               <div className={styles.carouselWrapper}>
                 <button 
                   className={`${styles.carouselNavBtn} ${styles.carouselPrev}`}
@@ -137,7 +135,7 @@ export default function Services() {
                 </button>
               </div>
               <div className={styles.serviceContent}>
-                <div className={styles.serviceIcon}>
+                <div className={`${styles.serviceIcon} ${styles.saunaIcon}`}>
                   <Flame size={20} strokeWidth={2} />
                 </div>
                 <div className={styles.serviceText}>

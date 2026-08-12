@@ -58,7 +58,7 @@ export default function Contacts() {
                 referrerPolicy="no-referrer"
               />
               <a
-                href="https://yandex.ru/maps/?from=mapframe&ll=55.912361%2C53.238677&mode=poi&poi%5Bpoint%5D=55.912204%2C53.238335&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D241654012395&source=mapframe&utm_source=mapframe&z=19.6"
+                href="https://yandex.ru/maps/?ll=55.913254%2C53.237960&mode=poi&poi%5Bpoint%5D=55.912204%2C53.238335&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D241654012395&z=19"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.mapOpenBtn}

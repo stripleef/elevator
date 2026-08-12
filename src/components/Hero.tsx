@@ -174,7 +174,7 @@ export default function Hero() {
           {/* Stats row */}
           <motion.div className={styles.stats} variants={item}>
             {[
-              { value: '10+', label: 'лет работы' },
+              { value: '3+', label: 'года работы' },
               { value: '6', label: 'типов номеров' },
               { value: '24/7', label: 'открыто' },
             ].map(({ value, label }) => (
