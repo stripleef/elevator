@@ -7,17 +7,6 @@ import styles from './Rooms.module.css'
 const PHONE_NUMBER = '+7 (917) 447-55-41'
 const PHONE_HREF = 'tel:+79174475541'
 
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false)
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 860)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
-  return isMobile
-}
-
 interface Room {
   id: string
   name: string
@@ -137,13 +126,17 @@ function PriceDropdown({ onClose }: { onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
+    function handleClickOutside(e: MouseEvent | TouchEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         onClose()
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    document.addEventListener('touchstart', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
   }, [onClose])
 
   return (
@@ -156,9 +149,13 @@ function PriceDropdown({ onClose }: { onClose: () => void }) {
       transition={{ duration: 0.2 }}
     >
       <p className={styles.callDropdownText}>
-        Для уточнения всех цен звоните по номеру:
+        Для уточнения всех цен и бронирования звоните по номеру:
       </p>
-      <a href={PHONE_HREF} className={styles.callDropdownPhone}>
+      <a 
+        href={PHONE_HREF} 
+        className={styles.callDropdownPhone}
+        onClick={(e) => e.stopPropagation()}
+      >
         <Phone size={16} strokeWidth={2} />
         {PHONE_NUMBER}
       </a>
@@ -180,13 +177,11 @@ function RoomCard({
   const [showPricePopup, setShowPricePopup] = useState(false)
   const [activeIdx, setActiveIdx] = useState(0)
   const sliderRef = useRef<HTMLDivElement>(null)
-  const isMobile = useIsMobile()
 
   const handlePriceClick = (e: React.MouseEvent) => {
-    if (!isMobile) {
-      e.preventDefault()
-      setShowPricePopup(prev => !prev)
-    }
+    e.preventDefault()
+    e.stopPropagation()
+    setShowPricePopup(prev => !prev)
   }
 
   const handleScroll = () => {
