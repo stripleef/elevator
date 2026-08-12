@@ -168,7 +168,7 @@ function PriceDropdown({ roomPrice, onClose }: { roomPrice?: string; onClose: ()
         {PHONE_NUMBER}
       </a>
       <p className={styles.priceNote}>
-        Стоимость зависит от количества человек и дней проживания, но она вас приятно удивит!
+        * Итоговая цена может отличаться в зависимости от количества человек и дней проживания. Для уточнения точной стоимости звоните по телефону!
       </p>
     </motion.div>
   )
@@ -369,6 +369,12 @@ export default function Rooms() {
               />
             ))}
           </Stagger>
+
+          <FadeIn delay={0.2}>
+            <p className={styles.sectionDisclaimer}>
+              * Обратите внимание: указанные цены носят ознакомительный характер за 1 человека и могут отличаться в зависимости от состава гостей, периода и дней проживания. Для уточнения точной цены звоните по телефону: <a href={PHONE_HREF} className={styles.disclaimerPhoneLink}>{PHONE_NUMBER}</a>
+            </p>
+          </FadeIn>
         </div>
       </section>
 
