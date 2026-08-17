@@ -116,7 +116,11 @@ const ROOMS: Room[] = [
     id: 'komfort-3',
     name: 'КОМФОРТ (Семейный)',
     price: 'от 2 500 ₽ / сут.',
-    images: [],
+    images: [
+      './rooms/komfort3/komf_sem1.jpg',
+      './rooms/komfort3/komf_sem2.jpg',
+      './rooms/komfort3/komf_sem3.jpg',
+    ],
     desc: 'Большой многоместный номер «Комфорт» с одной двухспальной и тремя односпальными кроватями, душем, туалетом и холодильником.',
     amenities: [
       { icon: Users, label: '1 двуспальная + 3 односпальные' },
