@@ -93,18 +93,20 @@ export default function Hero() {
       <motion.div className={styles.videoWrapper} style={{ y: bgY }}>
         <video
           ref={videoRefMobileBg}
-          src="./hero-video.mov"
+          src="./hero-video.mp4"
           autoPlay
           muted
+          loop
           playsInline
           aria-hidden="true"
           className={styles.videoBgBlur}
         />
         <video
           ref={videoRef}
-          src="./hero-video.mov"
+          src="./hero-video.mp4"
           autoPlay
           muted
+          loop
           playsInline
           className={styles.videoBg}
           onEnded={() => setVideoEnded(true)}
